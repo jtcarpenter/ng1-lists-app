@@ -5,4 +5,9 @@
 
 .lists, .items {
   float: left;
+  padding-right: 2em;
+}
+
+.remove {
+  color: red;
 }

@@ -11,6 +11,10 @@ function ListsCtrl($scope, $location) {
     $scope.todoTitle = '';
   };
 
+  $scope.removeList = function(index) {
+    $scope.lists.splice(index, 1);
+  };
+
   $scope.showItems = function(list) {
     console.log(list);
     $scope.currentList = list;
@@ -20,19 +24,7 @@ function ListsCtrl($scope, $location) {
     $scope.currentList.items.push({text: $scope.itemText, done: false});
   };
 
-  // $scope.remaining = function() {
-  //   var count = 0;
-  //   angular.forEach($scope.todos, function(todo) {
-  //     count += todo.done ? 0 : 1;
-  //   });
-  //   return count;
-  // };
-
-  // $scope.archive = function() {
-  //   var oldTodos = $scope.todos;
-  //   $scope.todos = [];
-  //   angular.forEach(oldTodos, function(todo) {
-  //     if (!todo.done) $scope.todos.push(todo);
-  //   });
-  // };
+  $scope.removeItem = function(index) {
+    $scope.currentList.items.splice(index, 1);
+  };
 }
