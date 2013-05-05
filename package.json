@@ -1,0 +1,9 @@
+{
+	"name": "dev-tools",
+	"dependencies" : {
+		"less": "1.3.3"
+	},
+	"engines": {
+		"node": ">=0.11.1"
+	}
+}

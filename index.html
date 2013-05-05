@@ -3,7 +3,7 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <script src="lists.js"></script>
-    <link rel="stylesheet" href="lists.css">
+    <link rel="stylesheet" href="styles/css/lists.css">
   </head>
   <body>
     <h1>Lists app</h1>
@@ -19,7 +19,7 @@
           </li>
         </ul>
         <form ng-submit="addList()">
-          <input type="text" ng-model="listTitle"  size="30" placeholder="add new todo here">
+          <input type="text" ng-model="listTitle"  size="30" placeholder="add new list here">
           <input class="btn-primary" type="submit" value="add">
         </form>
       </div>

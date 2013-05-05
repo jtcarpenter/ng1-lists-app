@@ -7,7 +7,7 @@ function ListsCtrl($scope, $location) {
   console.log($location);
 
   $scope.addList = function() {
-    $scope.lists.push({title: $scope.listTitle});
+    $scope.lists.push({title: $scope.listTitle, items: []});
     $scope.todoTitle = '';
   };
 
