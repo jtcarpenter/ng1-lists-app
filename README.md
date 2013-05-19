@@ -1,7 +1,7 @@
 [X] Make items belong to lists
 [ ] Make items tickable
-[ ] Create new lists
-[ ] Create new items
+[X] Create new lists
+[X] Create new items
 [ ] Save lists locally
 [ ] Save lists in mongodb
 [ ] Protect access with htaccess or other
