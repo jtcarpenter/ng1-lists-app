@@ -1,4 +1,6 @@
-function ListsCtrl($scope, $location) {
+var listsAppModule = listsAppModule || angular.module('listsApp', []);
+
+listsAppModule.controller('ListsController', function($scope, $location) {
   $scope.lists = [
       {title: 'Films', items: [{text: 'Jaws', done: false}, {text: 'Tron', done: false}]},
       {title: 'Games', items: [{text: 'GTA4', done: false}]}
@@ -11,7 +13,8 @@ function ListsCtrl($scope, $location) {
     $scope.todoTitle = '';
   };
 
-  $scope.removeList = function(index) {
+  $scope.removeList = function(index, list) {
+    if (list === $scope.currentList) $scope.currentList = null;
     $scope.lists.splice(index, 1);
   };
 
@@ -19,12 +22,4 @@ function ListsCtrl($scope, $location) {
     console.log(list);
     $scope.currentList = list;
   };
-
-  $scope.addItem = function() {
-    $scope.currentList.items.push({text: $scope.itemText, done: false});
-  };
-
-  $scope.removeItem = function(index) {
-    $scope.currentList.items.splice(index, 1);
-  };
-}
+});
