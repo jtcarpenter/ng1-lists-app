@@ -2,7 +2,8 @@ listsApp.controller('ListsController', function(Lists, $scope) {
   $scope.lists = Lists.all;
 
   $scope.addList = function() {
-    Lists.all.push({title: $scope.listTitle, items: []});
+    var id = Lists.all.length;
+    Lists.all.push({id: id, title: $scope.listTitle, items: []});
     $scope.todoTitle = '';
   };
 

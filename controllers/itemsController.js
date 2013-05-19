@@ -1,5 +1,6 @@
 listsApp.controller('ItemsController', function(Lists, $scope, $routeParams) {
   $scope.$parent.list = Lists.all[$routeParams.id];
+  console.log($scope.$parent.list);
 
   $scope.addItem = function() {
     Lists.all[$scope.list.id].items.push({text: $scope.itemText, done: false});
