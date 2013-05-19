@@ -22,4 +22,14 @@ listsAppModule.controller('ListsController', function($scope, $location) {
     console.log(list);
     $scope.currentList = list;
   };
+
+  // TEMPSTART:
+  $scope.$watch('currentList', currentListWatchHandler);
+
+  function currentListWatchHandler(newValue, oldValue, scope) {
+    var oldTitle = (typeof oldValue !== 'undefined')? oldValue.title : undefined;
+    var newTitle = (typeof newValue !== 'undefined')? newValue.title : undefined;
+    console.log('Watching currentList, changed from \'' + oldTitle + '\' to \'' + newTitle + '\'');
+  }
+  // TEMPEND:
 });
