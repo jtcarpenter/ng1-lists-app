@@ -1,10 +1,12 @@
-listsApp.controller('ItemsController', function($scope, $location) {
+listsApp.controller('ItemsController', function(Lists, $scope, $routeParams) {
+  lists = Lists.query();
+  $scope.list = lists[$routeParams.id];
 
   $scope.addItem = function() {
-    $scope.currentList.items.push({text: $scope.itemText, done: false});
+    $scope.list.items.push({text: $scope.itemText, done: false});
   };
 
   $scope.removeItem = function(index) {
-    $scope.currentList.items.splice(index, 1);
+    $scope.list.items.splice(index, 1);
   };
 });

@@ -6,6 +6,7 @@
     <script src="/services/lists.js"></script>
     <script src="/controllers/listsController.js"></script>
     <script src="/controllers/itemsController.js"></script>
+    <script src="/config/routes.js"></script>
     <link rel="stylesheet" href="styles/css/lists.css">
   </head>
   <body>
@@ -16,7 +17,7 @@
         <ul class="unstyled">
           <li ng-repeat="list in lists">
             <h3 ng-click="showItems(list)">
-              <span ng-bind="list.title"></span>
+              <a href="#/list/{{list.id}}">{{list.title}}</a>
               <span class="remove" ng-click="removeList($index, list)">remove</span>
             </h3>
           </li>
@@ -26,19 +27,7 @@
           <input class="btn-primary" type="submit" value="add">
         </form>
       </div>
-      <div class="items" ng-controller="ItemsController">
-        <h2>Items</h2>
-        <ul class="unstyled">
-          <li ng-repeat="item in currentList.items">
-            <span>{{item.text}}</span>
-            <span class="remove" ng-click="removeItem($index)">remove</span>
-          </li>
-        </ul>
-        <form ng-submit="addItem()" ng-show="currentList">
-          <input type="text" ng-model="itemText"  size="30" placeholder="add new item here">
-          <input class="btn-primary" type="submit" value="add">
-        </form>
-      </div>
+      <div ng-view></div>
     </div>
   </body>
 </html>
