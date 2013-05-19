@@ -7,7 +7,7 @@ listsApp.controller('ListsController', function(Lists, $scope) {
   };
 
   $scope.removeList = function(index, list) {
-    // TODO:  if list is currently showing, items should be removed
+    if ($scope.list === Lists.all[index]) $scope.list = undefined;
     Lists.all.splice(index, 1);
   };
 });
