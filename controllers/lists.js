@@ -1,11 +1,5 @@
-var listsAppModule = listsAppModule || angular.module('listsApp', []);
-
-listsAppModule.controller('ListsController', function($scope, $location) {
-  $scope.lists = [
-      {title: 'Films', items: [{text: 'Jaws', done: false}, {text: 'Tron', done: false}]},
-      {title: 'Games', items: [{text: 'GTA4', done: false}]}
-    ];
-
+listsApp.controller('ListsController', function(Lists, $scope, $location) {
+  $scope.lists = Lists.query();
   console.log($location);
 
   $scope.addList = function() {
@@ -27,8 +21,8 @@ listsAppModule.controller('ListsController', function($scope, $location) {
   $scope.$watch('currentList', currentListWatchHandler);
 
   function currentListWatchHandler(newValue, oldValue, scope) {
-    var oldTitle = (typeof oldValue !== 'undefined')? oldValue.title : undefined;
-    var newTitle = (typeof newValue !== 'undefined')? newValue.title : undefined;
+    var oldTitle = (typeof oldValue !== 'undefined' && oldValue !== null)? oldValue.title : undefined;
+    var newTitle = (typeof newValue !== 'undefined' && newValue !== null)? newValue.title : undefined;
     console.log('Watching currentList, changed from \'' + oldTitle + '\' to \'' + newTitle + '\'');
   }
   // TEMPEND:

@@ -1,6 +1,4 @@
-var listsAppModule = listsAppModule || angular.module('listsApp', []);
-
-listsAppModule.controller('ItemsController', function($scope, $location) {
+listsApp.controller('ItemsController', function($scope, $location) {
 
   $scope.addItem = function() {
     $scope.currentList.items.push({text: $scope.itemText, done: false});
