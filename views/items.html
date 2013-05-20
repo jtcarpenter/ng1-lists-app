@@ -5,7 +5,8 @@
     <span class="remove" ng-click="removeItem($index)">remove</span>
   </li>
 </ul>
-<form ng-submit="addItem()" ng-show="list">
-  <input type="text" ng-model="itemText"  size="30" placeholder="add new item here">
-  <input class="btn-primary" type="submit" value="add">
+<form ng-submit="addItem()" ng-show="list" name="addItemForm">
+  <div ng-show="itemsMessage">{{itemsMessage}}</div>
+  <input type="text" ng-model="itemText" required size="30" placeholder="add new item here" value="{{listTitle}}">
+  <input class="btn-primary" type="submit" value="add" ng-disabled="!addItemForm.$valid">
 </form>

@@ -21,3 +21,9 @@ node server.js
 
 lessc -x styles.less styles.css
 
+
+======== Notes ===========
+
+Have a main app controller which wraps around everthing, inside the listsController
+and a usersController
+
