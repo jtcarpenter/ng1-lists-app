@@ -32,7 +32,6 @@ function start() {
 
     var uri = url.parse(request.url).pathname,
     filename = path.join(process.cwd(), appPath + uri);
-    console.log(uri);
 
     fs.exists(filename, function(exists) {
       if(!exists) {
