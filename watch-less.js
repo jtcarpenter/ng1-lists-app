@@ -2,8 +2,8 @@ var less = require('less'),
 	fs = require('fs'),
 	path = require('path');
 
-var srcDir = 'styles/less',
-	saveDir = 'styles/css',
+var srcDir = 'app/styles/less',
+	saveDir = 'app/styles/css',
 	lessFiles = fs.readdirSync(srcDir),
 	watchFiles = lessFiles.filter(function(file) {
 		return !/^_|^\.+/.test(file);

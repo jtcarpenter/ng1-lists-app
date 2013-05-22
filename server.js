@@ -1,7 +1,8 @@
 var http = require("http"),
   url = require("url"),
   path = require("path"),
-  fs = require("fs");
+  fs = require("fs"),
+  appPath = '/app';
 
 var port = 8888,
   dev = null,
@@ -30,7 +31,8 @@ function start() {
   http.createServer(function(request, response) {
 
     var uri = url.parse(request.url).pathname,
-    filename = path.join(process.cwd(), uri);
+    filename = path.join(process.cwd(), appPath + uri);
+    console.log(uri);
 
     fs.exists(filename, function(exists) {
       if(!exists) {

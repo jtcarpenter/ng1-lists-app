@@ -1,1 +1,0 @@
-var listsApp = angular.module('listsApp', []);
