@@ -35,4 +35,6 @@ lessc -x styles.less styles.css
 Have a main app controller which wraps around everthing, inside the listsController
 and a usersController
 
+http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
 
+http://www.egghead.io/
