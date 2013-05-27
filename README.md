@@ -1,23 +1,52 @@
-[X] Make items belong to lists
-[ ] Make items tickable
-[X] Create new lists
-[X] Create new items
+
+======== TODO ========
+
 [ ] Save lists locally
 [ ] Save lists in mongodb
 [ ] Protect access with htaccess or other
 [ ] Create users
-[X] Fix bug cannot add items to new list
 
+======== CONFIG ========
+
+--- Get latest version of node with NVM ---
 
 nvm ls-remote
 nvm install *.**.*
 nvm alias default *.**.*
+
+--- NPM modules ---
+
 npm install -g less
 npm install
+npm install -g karma
+
+-- Dev tools ---
+
 node watch-less.js
-node server.js
+node server.js || node web-server.js
+
+--- Unit testing ---
+
+karma init
+karma start
+karma run
+
+--- Compilation ---
+
+java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
 
 
+--- Debugging ---
+
+Batarang (adds AngularJS knowledge to Chrome dev tools)
+
+https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk
+
+--- Other dependencies ---
+
+brew update && brew install phantomjs
+
+======== DEV ========
 
 lessc -x styles.less styles.css
 
