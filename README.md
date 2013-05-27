@@ -28,6 +28,9 @@ node server.js || node web-server.js
 --- Unit testing ---
 
 karma init
+
+Add app files to karma.conf.js
+
 karma start
 karma run
 
