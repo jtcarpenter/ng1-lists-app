@@ -68,5 +68,4 @@ Have a main app controller which wraps around everthing, inside the listsControl
 and a usersController
 
 http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-
-
+http://www.egghead.io/
