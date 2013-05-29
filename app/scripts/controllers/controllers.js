@@ -3,6 +3,7 @@ listsApp.controller('ListsController', function(Lists, $scope) {
 
   $scope.addList = function() {
     var id = Lists.all.length;
+    // TODO: We don't want references to $scope inside our methods
     Lists.all.push({id: id, title: $scope.listTitle, items: []});
     $scope.listsMessage = 'New list \'' + $scope.listTitle + '\' added';
     $scope.listTitle = '';
