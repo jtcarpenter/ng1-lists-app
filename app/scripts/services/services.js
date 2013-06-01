@@ -1,4 +1,13 @@
-listsApp.factory('Lists', function() {
+'use strict';
+
+var services = angular.module('listsApp.services', ['ngResource']);
+
+// services.factory('List', ['$resource', function($resource) {
+//   return $resource('/lists/:id', {id: '@id'});
+// }]);
+
+services.factory('Lists', function() {
+//listsApp.factory('Lists', function() {
   var lists = {};
   lists.query = function() {
     return [

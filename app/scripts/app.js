@@ -1,8 +1,8 @@
 'use strict';
 
-var listsApp = angular.module('listsApp', []);
+var app = angular.module('listsApp', ['listsApp.services']);
 
-listsApp.config(function($routeProvider) {
+app.config(function($routeProvider) {
   $routeProvider.
     when('/', {
       controller: 'ListsController'

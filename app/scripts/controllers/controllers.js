@@ -1,4 +1,6 @@
-listsApp.controller('ListsController', function(Lists, $scope) {
+'use strict';
+
+app.controller('ListsController', function(Lists, $scope) {
   $scope.lists = Lists.all;
 
   $scope.addList = function() {
@@ -15,7 +17,7 @@ listsApp.controller('ListsController', function(Lists, $scope) {
   };
 });
 
-listsApp.controller('ItemsController', function(Lists, $scope, $routeParams) {
+app.controller('ItemsController', function(Lists, $scope, $routeParams) {
   $scope.$parent.list = Lists.all[$routeParams.id];
   console.log($scope.$parent.list);
 
