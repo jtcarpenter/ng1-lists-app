@@ -1,9 +1,11 @@
 
 ======== TODO ========
 
-[ ] Save lists locally
+[ ] Implement tests
+[ ] Loading bar directive
 [ ] Save lists in mongodb
 [ ] Protect access with htaccess or other
+[ ] Save lists locally for caching
 [ ] Create users
 
 ======== CONFIG ========
