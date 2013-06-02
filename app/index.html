@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="listsApp">
+<html lang="en" ng-app="listsApp">
   <head>
     <script src="/scripts/vendor/angular.min.js"></script>
     <script src="/scripts/vendor/angular-resource.min.js"></script>
@@ -24,7 +24,7 @@
         </ul>
         <form ng-submit="addList()" name="addListForm">
           <div ng-show="listsMessage">{{listsMessage}}</div>
-          <input type="text" ng-model="listTitle" required size="30" placeholder="add new list here" value="{{listTitle}}">
+          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="add new list here" value="{{listTitle}}">
           <input class="btn-primary" ng-disabled="!addListForm.$valid" type="submit" value="add">
         </form>
       </div>
