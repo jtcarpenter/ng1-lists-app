@@ -1,8 +1,7 @@
-
 ======== TODO ========
 
 [X] Loading bar directive
-[ ] Save lists in mongodb
+[X] Save lists in mongodb
 [ ] Protect access with htaccess or other
 [ ] Implement tests
 [ ] Create users
