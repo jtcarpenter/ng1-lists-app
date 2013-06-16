@@ -1,40 +1,54 @@
 var express = require('express'),
   app = express(),
-  port = parseInt(process.env.PORT, 10) || 8080;
+  port = parseInt(process.env.PORT, 10) || 8080,
+  mongodb = require('mongodb'),
+  dbName = 'lists-app';
 
 app.configure(function() {
   app.use(express.methodOverride());
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/app'));
   app.use(app.router);
-}); 
+});
 
-var listsMap = [
-  {
-    id: 0, 
-    title: 'Films', 
-    items: [
-      {
-        text: 'Jaws', 
-        done: false
-      }, 
-      {
-        text: 'Tron', 
-        done: false
-      }
-    ]
-  },
-  {
-    id: 1, 
-    title: 'Games', 
-    items: [
-      {
-        text: 'GTA4', 
-        done: false
-      }
-    ]
-  }
-];
+var listsMap;
+// listsMap = [
+//   {
+//     id: 0, 
+//     title: 'Films', 
+//     items: [
+//       {
+//         text: 'Jaws', 
+//         done: false
+//       }, 
+//       {
+//         text: 'Tron', 
+//         done: false
+//       }
+//     ]
+//   },
+//   {
+//     id: 1, 
+//     title: 'Games', 
+//     items: [
+//       {
+//         text: 'GTA4', 
+//         done: false
+//       }
+//     ]
+//   }
+// ];
+
+var server = new mongodb.Server("127.0.0.1", 27017, {});
+new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
+  if (error) throw error;
+  console.log('connected to mongodb');
+  var lists = new mongodb.Collection(client, 'lists');
+  lists.find({}, {limit:10}).toArray(function(err, docs) {
+    listsMap = docs;
+  });
+});
+
 var nextId = 2;
 function indexById(arr, id) {
   for (var i = 0, l = arr.length; i < l; i++) {

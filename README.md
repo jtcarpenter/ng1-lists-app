@@ -1,7 +1,7 @@
 
 ======== TODO ========
 
-[ ] Loading bar directive
+[X] Loading bar directive
 [ ] Save lists in mongodb
 [ ] Protect access with htaccess or other
 [ ] Implement tests
@@ -26,6 +26,16 @@ npm install -g karma
 
 node watch-less.js
 node server.js || node web-server.js
+
+-- DB --
+
+brew install monogdb
+mongod
+
+- setup db -
+
+mongo lists-app
+db.addCollection('lists')
 
 --- Unit testing ---
 

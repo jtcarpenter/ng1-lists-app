@@ -1,7 +1,7 @@
 describe('Controllers', function () {
-  var $scope, ctrl;
+  var $scope, ctrl, mockBackend;
   // Need to indicate your module in a test.
-  beforeEach(module('listsApp'));
+  //beforeEach(module('listsApp'));
 
   it('to works correctly', function() {
     var x = 10;
