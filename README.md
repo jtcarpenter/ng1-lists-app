@@ -37,6 +37,35 @@ mongod
 mongo lists-app
 db.addCollection('lists')
 
+-- seed data --
+
+[
+  {
+    id: 0, 
+    title: 'Films', 
+    items: [
+      {
+        text: 'Jaws', 
+        done: false
+      }, 
+      {
+        text: 'Tron', 
+        done: false
+      }
+    ]
+  },
+  {
+    id: 1, 
+    title: 'Games', 
+    items: [
+      {
+        text: 'GTA4', 
+        done: false
+      }
+    ]
+  }
+]
+
 --- Unit testing ---
 
 karma init
