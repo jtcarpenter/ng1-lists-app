@@ -32,28 +32,33 @@ node server.js || node web-server.js
 karma init
 
 Add app files to karma.conf.js
+Add Borwsers to karma.conf.js
+
+Make sure you have vendor/angular-mocks.js etc.
 
 karma start
 karma run
 
 --- Compilation ---
 
+## Js
+
 java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
 
+## CSS
+
+lessc -x styles.less styles.css
+node watch-less.js
+
+--- Other dependencies ---
+
+brew update && brew install phantomjs
 
 --- Debugging ---
 
 Batarang (adds AngularJS knowledge to Chrome dev tools)
 
 https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk
-
---- Other dependencies ---
-
-brew update && brew install phantomjs
-
-======== DEV ========
-
-lessc -x styles.less styles.css
 
 ======== Bugs =============
 

@@ -11,6 +11,8 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'app/scripts/vendor/angular.min.js',
+  'app/scripts/vendor/angular-resource.min.js',
+  'test/vendor/angular-mocks.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',
@@ -58,7 +60,7 @@ autoWatch = true;
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-browsers = ['PhantomJS'];
+browsers = ['PhantomJS', 'Chrome'];
 
 
 // If browser does not capture in given timeout [ms], kill it
@@ -71,7 +73,7 @@ singleRun = false;
 
 
 // End 2 end config
-proxies = {'/': 'http://localhost:8000/test/e2e/'};
+//proxies = {'/': 'http://localhost:8000/test/e2e/'};
 
 // Karma root to ensure that Karma's source files dont
 // interfere with my tests

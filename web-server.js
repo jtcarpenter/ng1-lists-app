@@ -7,7 +7,7 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/app'));
   app.use(app.router);
-});
+}); 
 
 var listsMap = [
   {
