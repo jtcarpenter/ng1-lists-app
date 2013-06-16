@@ -1,12 +1,12 @@
 
 ======== TODO ========
 
-[ ] Implement tests
 [ ] Loading bar directive
 [ ] Save lists in mongodb
 [ ] Protect access with htaccess or other
-[ ] Save lists locally for caching
+[ ] Implement tests
 [ ] Create users
+[ ] Save lists locally for caching
 
 ======== CONFIG ========
 
@@ -61,13 +61,6 @@ Batarang (adds AngularJS knowledge to Chrome dev tools)
 https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk
 
 ======== Bugs =============
-
-[ ] New list created won't display items until other list has already
-    been displayed
-[ ] Click first list, remove, click second list: won't open
-    (This won'd work because we don't use a find by id to get the list,
-    instead we are just trying to find it by it's array index ,which
-    won't be accurate after the array has been updated)
 
 ======== Notes ===========
 

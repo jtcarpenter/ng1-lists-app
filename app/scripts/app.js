@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('listsApp', ['listsApp.services']);
+var app = angular.module('listsApp', ['listsApp.services', 'listsApp.directives']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.

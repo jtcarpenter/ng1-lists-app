@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="en" ng-app="listsApp">
   <head>
+    <title>Lists App</title>
     <script src="/scripts/vendor/angular.min.js"></script>
     <script src="/scripts/vendor/angular-resource.min.js"></script>
-    <script src="/scripts/services/services.js"></script>
     <script src="/scripts/directives/directives.js"></script>
+    <script src="/scripts/services/services.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/controllers/controllers.js"></script>
-    <link rel="stylesheet" href="/styles/css/lists.css">
+    <link rel="stylesheet" href="/styles/css/global.css">
   </head>
   <body>
-    <h1>Lists app</h1>
+    <header>
+      <h1>Lists app</h1>
+    </header>
+    <div loadingbar class="loadingbar">Loading...</div>
     <div ng-controller="ListsController">
       <div class="lists">
         <h2>Lists</h2>
