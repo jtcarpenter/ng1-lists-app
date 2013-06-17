@@ -100,6 +100,8 @@ https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjg
 
 ======== Bugs =============
 
+[ ] nextId will not always be number of documents in lusts collection.  For example, after a delete.  We will need to store nextId in another collection.
+
 ======== Notes ===========
 
 Have a main app controller which wraps around everthing, inside the listsController
