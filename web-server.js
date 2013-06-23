@@ -27,11 +27,9 @@ new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
 app.get('/lists', function(req, res) {
   console.log('/lists GET:');
   var params = {};
-  setTimeout(function(){
   lists.find(params).toArray(function(err, docs) {
     res.send(docs);
   });
-},2000);
 });
 
 app.get('/lists/:id', function(req, res) {

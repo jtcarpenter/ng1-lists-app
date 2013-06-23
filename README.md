@@ -2,7 +2,8 @@
 
 [X] Loading bar directive
 [X] Save lists in mongodb
-[ ] Add completion to items
+[X] Add completion to items
+[ ] Add loading/synching status directive (that works)
 [ ] Protect access with htaccess or other
 [ ] Implement tests
 [ ] Create users
