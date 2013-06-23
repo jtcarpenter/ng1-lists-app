@@ -3,7 +3,6 @@
 [X] Loading bar directive
 [X] Save lists in mongodb
 [ ] Add completion to items
-[ ] Persist deleted items and lists
 [ ] Protect access with htaccess or other
 [ ] Implement tests
 [ ] Create users
@@ -44,23 +43,27 @@ db.lists.drop()
 db.createCollection('lists')
 db.lists.insert([
   {
-    title: 'Films', 
+    title: 'Films',
     items: [
       {
-        text: 'Jaws', 
+        text: 'Jaws',
         done: false
       }, 
       {
-        text: 'Tron', 
+        text: 'Tron',
         done: false
+      },
+       {
+        text: 'Star Wars',
+        done: true
       }
     ]
   },
   {
-    title: 'Games', 
+    title: 'Games',
     items: [
       {
-        text: 'GTA4', 
+        text: 'GTA4',
         done: false
       }
     ]

@@ -1,7 +1,8 @@
 <h2>{{list.title}} Items</h2>
 <ul class="unstyled">
   <li ng-repeat="item in list.items">
-    <span>{{item.text}}</span>
+    <input type="checkbox" ng-click="checkItem($index)" ng-model="item.done">
+    <span class="done-{{item.done}}">{{item.text}}</span>
     <span class="remove" ng-click="removeItem($index)">remove</span>
   </li>
 </ul>

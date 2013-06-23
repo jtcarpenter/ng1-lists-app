@@ -26,15 +26,19 @@ new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
 
 app.get('/lists', function(req, res) {
   console.log('/lists GET:');
-  lists.find().toArray(function(err, docs) {
+  var params = {};
+  setTimeout(function(){
+  lists.find(params).toArray(function(err, docs) {
     res.send(docs);
   });
+},2000);
 });
 
 app.get('/lists/:id', function(req, res) {
-  var id = ObjectId(req.params.id);
   console.log('/lists/' + req.params.id) + ' GET:';
-  lists.findOne({_id: id}, function(err, doc) {
+  var params = {};
+  params._id = ObjectId(req.params.id);
+  lists.findOne(params, function(err, doc) {
     res.send(doc);
   });
 });
@@ -42,7 +46,7 @@ app.get('/lists/:id', function(req, res) {
 app.post('/lists', function(req, res) {
   console.log('/lists/ POST: title->' + req.body.title);
   var list = {};
-  list.title = req.body.title;
+  list.title = req.body.title || '';
   list.items = [];
 
   lists.insert(list);
@@ -52,23 +56,25 @@ app.post('/lists', function(req, res) {
 
 app.post('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id +' POST: title->' + req.body.title + ' items->' + req.body.items);
-  var id = ObjectId(req.params.id);
-  var list = {};
-  list.title = req.body.title;
-  list.items = req.body.items;
+  var params = {},
+    list = {};
+  params._id = ObjectId(req.params.id);
+  list.title = req.body.title || '';
+  list.items = req.body.items || [];
 
-  lists.findOne({_id: id}, function(err, doc) {
-    lists.update({_id: id}, {$set: {items: list.items}});
+  lists.findOne(params, function(err, doc) {
+    lists.update(params, {$set: {items: list.items}});
     res.send(list);
   });
 });
 
 app.del('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id + ' DEL:');
-  var id = ObjectId(req.params.id);
+  var params = {};
+  params.id = ObjectId(req.params.id);
 
-  lists.remove({_id: id}, function(err, doc) {
-    res.send('ok');
+  lists.remove(params, function(err, doc) {
+    res.send('{"status":"200"}');
   });
 });
 

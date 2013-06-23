@@ -39,6 +39,14 @@ app.controller('ItemsController', ['ListLoader', '$scope', 'List', '$routeParams
     });
   };
 
+  $scope.checkItem = function(index) {
+    console.log($scope.list.items[index].done);
+    var id = $scope.list._id;
+    $scope.list.$save({id: id}, function(list) {
+      console.log('saved update to item');
+    });
+  };
+
   $scope.removeItem = function(index) {
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
