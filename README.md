@@ -2,6 +2,8 @@
 
 [X] Loading bar directive
 [X] Save lists in mongodb
+[ ] Add completion to items
+[ ] Persist deleted items and lists
 [ ] Protect access with htaccess or other
 [ ] Implement tests
 [ ] Create users
@@ -38,9 +40,10 @@ db.addCollection('lists')
 
 -- seed data --
 
-[
+db.lists.drop()
+db.createCollection('lists')
+db.lists.insert([
   {
-    id: 0, 
     title: 'Films', 
     items: [
       {
@@ -54,7 +57,6 @@ db.addCollection('lists')
     ]
   },
   {
-    id: 1, 
     title: 'Games', 
     items: [
       {
@@ -63,7 +65,7 @@ db.addCollection('lists')
       }
     ]
   }
-]
+])
 
 --- Unit testing ---
 
@@ -99,8 +101,6 @@ Batarang (adds AngularJS knowledge to Chrome dev tools)
 https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk
 
 ======== Bugs =============
-
-[ ] nextId will not always be number of documents in lusts collection.  For example, after a delete.  We will need to store nextId in another collection.
 
 ======== Notes ===========
 

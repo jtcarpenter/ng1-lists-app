@@ -2,6 +2,7 @@ var express = require('express'),
   app = express(),
   port = parseInt(process.env.PORT, 10) || 8080,
   mongodb = require('mongodb'),
+  ObjectId = require('mongodb').ObjectID,
   dbName = 'lists-app';
 
 app.configure(function() {
@@ -11,15 +12,12 @@ app.configure(function() {
   app.use(app.router);
 });
 
-var lists, nextId;
+var lists;
 var server = new mongodb.Server("127.0.0.1", 27017, {});
 new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
   if (error) throw error;
   console.log('connected to mongodb');
   lists = new mongodb.Collection(client, 'lists');
-  lists.find().toArray(function(err, docs) {
-    nextId = docs.length;
-  });
 });
 
 /*
@@ -27,23 +25,23 @@ new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
  */
 
 app.get('/lists', function(req, res) {
+  console.log('/lists GET:');
   lists.find().toArray(function(err, docs) {
     res.send(docs);
   });
 });
 
 app.get('/lists/:id', function(req, res) {
-  var id = parseInt(req.params.id, 10);
-  console.log('Requesting list with id', id);
-  lists.findOne({id: id}, function(err, doc) {
+  var id = ObjectId(req.params.id);
+  console.log('/lists/' + req.params.id) + ' GET:';
+  lists.findOne({_id: id}, function(err, doc) {
     res.send(doc);
   });
 });
 
 app.post('/lists', function(req, res) {
-  console.log('posted to /lists ' + req.body.title + ' nextId: ' + nextId);
+  console.log('/lists/ POST: title->' + req.body.title);
   var list = {};
-  list.id = nextId++;
   list.title = req.body.title;
   list.items = [];
 
@@ -53,25 +51,23 @@ app.post('/lists', function(req, res) {
 });
 
 app.post('/lists/:id', function(req, res) {
-  var id = parseInt(req.params.id, 10);
-  console.log('posted to /lists/:id ' + req.body.title);
+  console.log('/lists/' + req.params.id +' POST: title->' + req.body.title + ' items->' + req.body.items);
+  var id = ObjectId(req.params.id);
   var list = {};
-  list.id = req.params.id;
   list.title = req.body.title;
   list.items = req.body.items;
 
-  lists.findOne({id: id}, function(err, doc) {
-    lists.update({id: id}, {$set: {items: list.items}});
+  lists.findOne({_id: id}, function(err, doc) {
+    lists.update({_id: id}, {$set: {items: list.items}});
     res.send(list);
   });
 });
 
 app.del('/lists/:id', function(req, res) {
-  var id = parseInt(req.params.id, 10);
-  console.log('delete list with id ' + req.params.id);
+  console.log('/lists/' + req.params.id + ' DEL:');
+  var id = ObjectId(req.params.id);
 
-  lists.remove({id: id}, function(err, doc) {
-    console.log(doc);
+  lists.remove({_id: id}, function(err, doc) {
     res.send('ok');
   });
 });

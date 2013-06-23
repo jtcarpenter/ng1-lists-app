@@ -21,7 +21,7 @@
         <ul class="unstyled">
           <li ng-repeat="list in lists">
             <h3 ng-click="showItems(list)">
-              <a href="#/list/{{list.id}}">{{list.title}}</a>
+              <a href="#/list/{{list._id}}">{{list.title}}</a>
               <span class="remove" ng-click="removeList($index, list)">remove</span>
             </h3>
           </li>

@@ -2,10 +2,10 @@
 <ul class="unstyled">
   <li ng-repeat="item in list.items">
     <span>{{item.text}}</span>
-    <span class="remove" ng-click="removeItem($index, list)">remove</span>
+    <span class="remove" ng-click="removeItem($index)">remove</span>
   </li>
 </ul>
-<form ng-submit="addItem(list)" ng-show="list" name="addItemForm">
+<form ng-submit="addItem()" ng-show="list" name="addItemForm">
   <div ng-show="itemsMessage">{{itemsMessage}}</div>
   <input type="text" ng-model="itemText" required size="30" placeholder="add new item here" value="{{listTitle}}">
   <input class="btn-primary" type="submit" value="add" ng-disabled="!addItemForm.$valid">

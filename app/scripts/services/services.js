@@ -3,7 +3,7 @@
 var services = angular.module('listsApp.services', ['ngResource']);
 
 services.factory('List', ['$resource', function($resource) {
-  return $resource('/lists/:id', {id: '@id'});
+  return $resource('/lists/:id');
 }]);
 
 services.factory('ListsLoader', ['List', function(List) {
