@@ -3,9 +3,13 @@
 [X] Loading bar directive
 [X] Save lists in mongodb
 [X] Add completion to items
+[X] Protect access with htaccess or other
 [ ] Add loading/synching status directive (that works)
-[ ] Protect access with htaccess or other
 [ ] Implement tests
+
+[ ] Styles
+[ ] Deployment
+
 [ ] Create users
 [ ] Save lists locally for caching
 
@@ -13,36 +17,52 @@
 
 --- Get latest version of node with NVM ---
 
-nvm ls-remote
-nvm install *.**.*
-nvm alias default *.**.*
+$ nvm ls-remote
+$ nvm install *.**.*
+$ nvm alias default *.**.*
 
 --- NPM modules ---
 
-npm install -g less
-npm install
-npm install -g karma
+$ npm install -g less
+$ npm install -g karma
+$ npm install -g htdigest
+
+$ npm install
+
+-- Users --
+
+# New user and new file
+$ htdigest -c htpasswd "private area" user
+
+# Extra users
+$ htdigest htpasswd "private area" user
 
 -- Dev tools ---
 
-node watch-less.js
-node server.js || node web-server.js
+$ node watch-less.js
+$ node web-server.js
+
+-- Server Config --
+
+$ cp config.default.json config.json
+
+# Set config vars
 
 -- DB --
 
-brew install monogdb
-mongod
+$ brew install monogdb
+$ mongod
 
 - setup db -
 
-mongo lists-app
-db.addCollection('lists')
+$ mongo lists-app
+> db.addCollection('lists')
 
 -- seed data --
 
-db.lists.drop()
-db.createCollection('lists')
-db.lists.insert([
+> db.lists.drop()
+> db.createCollection('lists')
+> db.lists.insert([
   {
     title: 'Films',
     items: [
@@ -73,26 +93,26 @@ db.lists.insert([
 
 --- Unit testing ---
 
-karma init
+$ karma init
 
 Add app files to karma.conf.js
 Add Borwsers to karma.conf.js
 
 Make sure you have vendor/angular-mocks.js etc.
 
-karma start
-karma run
+$ karma start
+$ karma run
 
 --- Compilation ---
 
 ## Js
 
-java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
+$ java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
 
 ## CSS
 
-lessc -x styles.less styles.css
-node watch-less.js
+$ lessc -x styles.less styles.css
+$ node watch-less.js
 
 --- Other dependencies ---
 

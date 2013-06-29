@@ -3,9 +3,25 @@ var express = require('express'),
   port = parseInt(process.env.PORT, 10) || 8080,
   mongodb = require('mongodb'),
   ObjectId = require('mongodb').ObjectID,
-  dbName = 'lists-app';
+  dbName = 'lists-app',
+  http = require('http'),
+  auth = require('http-auth'),
+  config = require('./config.json'),
+  basicAuth = auth({
+    authRealm: config.authRealm,
+    authFile: __dirname + '/htpasswd',
+    authType: 'digest'
+  });
+
+function authorise(req, res, next) {
+    basicAuth.apply(req, res, function(username) {
+      console.log("user authenticated");
+      next();
+    });
+}
 
 app.configure(function() {
+  app.use(authorise);
   app.use(express.methodOverride());
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/app'));
