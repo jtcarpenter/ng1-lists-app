@@ -41,7 +41,7 @@ $ java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js p
 Install Phantom with Homebrew
 
 ```
-brew update && brew install phantomjs
+$ brew update && brew install phantomjs
 ```
 ## Debugging
 Batarang (adds AngularJS knowledge to Chrome dev tools)
