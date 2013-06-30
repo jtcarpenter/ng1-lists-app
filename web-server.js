@@ -44,7 +44,10 @@ app.get('/lists', function(req, res) {
   console.log('/lists GET:');
   var params = {};
   lists.find(params).toArray(function(err, docs) {
-    res.send(docs);
+    // TODO: Remove Timeout
+    setTimeout(function(){
+      res.send(docs);
+    }, 500);
   });
 });
 
@@ -53,7 +56,10 @@ app.get('/lists/:id', function(req, res) {
   var params = {};
   params._id = ObjectId(req.params.id);
   lists.findOne(params, function(err, doc) {
-    res.send(doc);
+    // TODO: Remove Timeout
+    setTimeout(function(){
+      res.send(doc);
+    }, 500);
   });
 });
 

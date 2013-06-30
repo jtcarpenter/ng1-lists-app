@@ -1,65 +1,70 @@
-======== TODO ========
+# Tools
+## Node
+Get latest version of node with NVM
 
-[X] Loading bar directive
-[X] Save lists in mongodb
-[X] Add completion to items
-[X] Protect access with htaccess or other
-[ ] Add loading/synching status directive (that works)
-[ ] Implement tests
-
-[ ] Styles
-[ ] Deployment
-
-[ ] Create users
-[ ] Save lists locally for caching
-
-======== CONFIG ========
-
---- Get latest version of node with NVM ---
-
+```
 $ nvm ls-remote
 $ nvm install *.**.*
 $ nvm alias default *.**.*
+```
+## NPM Dependencies
+Install Global NPM modules
 
---- NPM modules ---
-
+```
 $ npm install -g less
 $ npm install -g karma
 $ npm install -g htdigest
+```
+Install local NPM modules
 
+```
 $ npm install
+```
+## CSS/LESS
+Compile LESS file
 
--- Users --
+```
+$ lessc -x styles.less styles.css
+```
+Run Script to autocomile LESS files
 
-# New user and new file
-$ htdigest -c htpasswd "private area" user
-
-# Extra users
-$ htdigest htpasswd "private area" user
-
--- Dev tools ---
-
+```
 $ node watch-less.js
-$ node web-server.js
+```
+## JavaScript Compilation
+Run Google Closure compiler
 
--- Server Config --
+```
+$ java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
+```
+##  PhantomJS (Testing)
+Install Phantom with Homebrew
 
-$ cp config.default.json config.json
+```
+brew update && brew install phantomjs
+```
+## Debugging
+Batarang (adds AngularJS knowledge to Chrome dev tools)
 
-# Set config vars
+<https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk>
+# Config
+## DB
+Install and start MongDB
 
--- DB --
-
+```
 $ brew install monogdb
 $ mongod
+```
+Set up DB
 
-- setup db -
-
+```
 $ mongo lists-app
 > db.addCollection('lists')
+```
 
--- seed data --
+Add seed data
 
+```
 > db.lists.drop()
 > db.createCollection('lists')
 > db.lists.insert([
@@ -90,46 +95,55 @@ $ mongo lists-app
     ]
   }
 ])
+```
+## Users
+Add user and new file
 
---- Unit testing ---
+```
+$ htdigest -c htpasswd "private area" user
+```
+Add extra user
 
+```
+$ htdigest htpasswd "private area" user
+```
+## Server
+Create config.json file
+
+```
+$ cp config.default.json config.json
+```
+Set Installation specific vars
+
+Start server
+
+```
+$ node web-server.js
+```
+
+## Unit testing
+Initialise Karma
+
+```
 $ karma init
-
+```
 Add app files to karma.conf.js
+
 Add Borwsers to karma.conf.js
 
 Make sure you have vendor/angular-mocks.js etc.
 
+Start Karma
+
+```
 $ karma start
 $ karma run
+```
+# Notes
 
---- Compilation ---
-
-## Js
-
-$ java -jar closure_compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js path/to/file.js
-
-## CSS
-
-$ lessc -x styles.less styles.css
-$ node watch-less.js
-
---- Other dependencies ---
-
-brew update && brew install phantomjs
-
---- Debugging ---
-
-Batarang (adds AngularJS knowledge to Chrome dev tools)
-
-https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk
-
-======== Bugs =============
-
-======== Notes ===========
-
-Have a main app controller which wraps around everthing, inside the listsController
+* Have a main app controller which wraps around everthing, inside the listsController
 and a usersController
 
-http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-http://www.egghead.io/
+* Authentication Tutorial <http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app>
+
+* Various AngularJS tutorials <http://www.egghead.io/>

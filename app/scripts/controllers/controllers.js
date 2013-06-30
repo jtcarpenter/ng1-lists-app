@@ -24,9 +24,9 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
   };
 }]);
 
-app.controller('ItemsController', ['ListLoader', '$scope', 'List', '$routeParams',
-    '$location', function(ListLoader, $scope, List, $routeParams, $location) {
-  $scope.list = ListLoader();
+app.controller('ItemsController', ['$scope', 'List', '$routeParams',
+    '$location', 'list', function($scope, List, $routeParams, $location, list) {
+  $scope.list = list;
 
   $scope.addItem = function() {
     $scope.list.items = $scope.list.items || [];
