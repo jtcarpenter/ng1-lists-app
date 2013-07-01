@@ -68,6 +68,8 @@ app.post('/lists', function(req, res) {
   var list = {};
   list.title = req.body.title || '';
   list.items = [];
+  list.created = new Date();
+  list.modified = new Date();
 
   lists.insert(list);
 
@@ -79,11 +81,11 @@ app.post('/lists/:id', function(req, res) {
   var params = {},
     list = {};
   params._id = ObjectId(req.params.id);
-  list.title = req.body.title || '';
-  list.items = req.body.items || [];
+  items = req.body.items || [];
+  modified = new Date();
 
   lists.findOne(params, function(err, doc) {
-    lists.update(params, {$set: {items: list.items}});
+    lists.update(params, {$set: {items: items, modified: modified}});
     res.send(list);
   });
 });

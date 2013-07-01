@@ -24,13 +24,13 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
   };
 }]);
 
-app.controller('ItemsController', ['$scope', 'List', '$routeParams',
-    '$location', 'list', function($scope, List, $routeParams, $location, list) {
+app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams',
+    '$location', 'list', function($scope, ListLoader, List, $routeParams, $location, list) {
   $scope.list = list;
 
   $scope.addItem = function() {
     $scope.list.items = $scope.list.items || [];
-    $scope.list.items.push({text: $scope.itemText, done: false});
+    $scope.list.items.push({text: $scope.itemText, done: false, created: new Date()});
     var id = $scope.list._id;
     $scope.list.$save({id: id}, function(list) {
       $scope.list = ListLoader();

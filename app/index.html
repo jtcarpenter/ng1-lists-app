@@ -14,7 +14,6 @@
     <header>
       <h1>Lists app</h1>
     </header>
-    <div loadingbar class="loadingbar">Loading...</div>
     <div ng-controller="ListsController">
       <div class="lists">
         <h2>Lists</h2>
@@ -22,6 +21,7 @@
           <li ng-repeat="list in lists">
             <h3 ng-click="showItems(list)">
               <a href="#/list/{{list._id}}">{{list.title}}</a>
+              <span>{{list.modified}}</span>
               <span class="remove" ng-click="removeList($index, list)">remove</span>
             </h3>
           </li>

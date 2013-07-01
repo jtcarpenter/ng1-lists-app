@@ -65,34 +65,42 @@ $ mongo lists-app
 Add seed data
 
 ```
-> db.lists.drop()
-> db.createCollection('lists')
-> db.lists.insert([
+db.lists.drop()
+db.createCollection('lists')
+db.lists.insert([
   {
     title: 'Films',
     items: [
       {
         text: 'Jaws',
-        done: false
+        done: false,
+        created: new Date()
       }, 
       {
         text: 'Tron',
-        done: false
+        done: false,
+        created: new Date()
       },
        {
         text: 'Star Wars',
-        done: true
+        done: true,
+        created: new Date()
       }
-    ]
+    ],
+    created: new Date(),
+    modified: new Date()
   },
   {
     title: 'Games',
     items: [
       {
         text: 'GTA4',
-        done: false
+        done: false,
+        created: new Date()
       }
-    ]
+    ],
+    created: new Date(),
+    modified: new Date()
   }
 ])
 ```

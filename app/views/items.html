@@ -3,6 +3,7 @@
   <li ng-repeat="item in list.items">
     <input type="checkbox" ng-click="checkItem($index)" ng-model="item.done">
     <span class="done-{{item.done}}">{{item.text}}</span>
+    <span>{{item.created}}</span>
     <span class="remove" ng-click="removeItem($index)">remove</span>
   </li>
 </ul>
