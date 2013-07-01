@@ -93,7 +93,7 @@ app.post('/lists/:id', function(req, res) {
 app.del('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id + ' DEL:');
   var params = {};
-  params.id = ObjectId(req.params.id);
+  params._id = ObjectId(req.params.id);
 
   lists.remove(params, function(err, doc) {
     res.send('{"status":"200"}');

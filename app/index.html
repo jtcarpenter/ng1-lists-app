@@ -21,7 +21,7 @@
           <li ng-repeat="list in lists">
             <h3 ng-click="showItems(list)">
               <a href="#/list/{{list._id}}">{{list.title}}</a>
-              <span>{{list.modified}}</span>
+              <span modified>{{list.modified | date:'dd-MM-yyyy'}}</span>
               <span class="remove" ng-click="removeList($index, list)">remove</span>
             </h3>
           </li>
