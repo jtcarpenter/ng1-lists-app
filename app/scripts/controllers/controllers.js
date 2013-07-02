@@ -28,8 +28,8 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
 }]);
 
 app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams',
-    '$location', 'list', function($scope, ListLoader, List, $routeParams, $location, list) {
-  $scope.list = list;
+    '$location', function($scope, ListLoader, List, $routeParams, $location) {
+  $scope.list = ListLoader();
   $scope.itemPredicate = 'text';
   $scope.itemReverse = false;
 
@@ -37,18 +37,19 @@ app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams
     $scope.list.items = $scope.list.items || [];
     $scope.list.items.push({text: $scope.itemText, done: false, created: new Date()});
     var id = $scope.list._id;
-    $scope.list.$save({id: id}, function(list) {
-      $scope.list = ListLoader();
-      $location.path('/list/' + id);
+    List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
+    }, function(data) {
+      console.log(data);
     });
   };
 
   $scope.checkItem = function(index) {
-    console.log($scope.list.items[index].done);
     var id = $scope.list._id;
-    $scope.list.$save({id: id}, function(list) {
-      console.log('saved update to item');
+    List.save({id: id}, $scope.list, function(data){
+      // success
+    }, function(data) {
+      console.log(data);
     });
   };
 
@@ -56,9 +57,10 @@ app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams
     var index = $scope.list.items.indexOf(item);
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
-    $scope.list.$save({id: id}, function() {
-      $scope.list = ListLoader();
-      $location.path('/list/' + id);
+    List.save({id: id}, $scope.list, function(data){
+      // success
+    }, function(data) {
+      console.log(data);
     });
   }
 }]);

@@ -9,11 +9,6 @@ app.config(['$routeProvider', function($routeProvider) {
     }).
     when('/list/:id', {
       controller: 'ItemsController',
-      resolve: {
-        list: function(ListLoader) {
-          return ListLoader();
-        }
-      },
       templateUrl: 'views/items.html'
     }).
     otherwise({
