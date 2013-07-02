@@ -73,7 +73,8 @@ app.post('/lists', function(req, res) {
 
   lists.insert(list);
 
-  res.send(list);
+  //res.send(list);
+  res.send('{"status":"200"}');
 });
 
 app.post('/lists/:id', function(req, res) {
@@ -86,7 +87,8 @@ app.post('/lists/:id', function(req, res) {
 
   lists.findOne(params, function(err, doc) {
     lists.update(params, {$set: {items: items, modified: modified}});
-    res.send(list);
+    //res.send(list);
+    res.send('{"status":"200"}');
   });
 });
 

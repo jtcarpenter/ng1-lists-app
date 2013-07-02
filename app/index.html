@@ -21,6 +21,11 @@
           <a href="" ng-click="listPredicate = 'title'; listReverse=!listReverse">Title</a>
           <a href="" ng-click="listPredicate = 'modified'; listReverse=!listReverse">Modified</a>
         </h2>
+        <form ng-submit="addList()" name="addListForm">
+          <div ng-show="listsMessage">{{listsMessage}}</div>
+          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="add new list here" value="{{listTitle}}">
+          <input class="btn-primary" ng-disabled="!addListForm.$valid" type="submit" value="add">
+        </form>
         <ul class="unstyled">
           <li ng-repeat="list in lists | orderBy:listPredicate:listReverse">
             <h3 ng-click="showItems(list)">
@@ -30,13 +35,8 @@
             </h3>
           </li>
         </ul>
-        <form ng-submit="addList()" name="addListForm">
-          <div ng-show="listsMessage">{{listsMessage}}</div>
-          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="add new list here" value="{{listTitle}}">
-          <input class="btn-primary" ng-disabled="!addListForm.$valid" type="submit" value="add">
-        </form>
       </div>
-      <div ng-view></div>
+      <div ng-view class="items"></div>
     </div>
   </body>
 </html>

@@ -1,4 +1,4 @@
 .done-true{text-decoration:line-through;color:grey;}
-.lists,.items{float:left;padding-right:2em;}
+.lists,.items{float:left;padding-right:5%;width:45%;}
 .remove{color:red;}
 .hide{display:none;}
