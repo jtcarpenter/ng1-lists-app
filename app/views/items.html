@@ -8,7 +8,7 @@
     <input type="checkbox" ng-click="checkItem($index)" ng-model="item.done">
     <span class="done-{{item.done}}">{{item.text}}</span>
     <span>{{item.created | date:'dd-MM-yyyy'}}</span>
-    <span class="remove" ng-click="removeItem($index)">remove</span>
+    <span class="remove" ng-click="removeItem(item)">remove</span>
   </li>
 </ul>
 <form ng-submit="addItem()" ng-show="list" name="addItemForm">

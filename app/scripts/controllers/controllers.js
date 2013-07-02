@@ -15,8 +15,9 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
     });
   };
 
-  $scope.removeList = function(index, list) {
+  $scope.removeList = function(list) {
     var oldListId = list._id;
+    var index = $scope.lists.indexOf(list);
     list.$delete({id: oldListId}, function() {
       $scope.lists.splice(index, 1);
       if ($location.path() === '/list/' + oldListId) {
@@ -51,7 +52,8 @@ app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams
     });
   };
 
-  $scope.removeItem = function(index) {
+  $scope.removeItem = function(item) {
+    var index = $scope.list.items.indexOf(item);
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
     $scope.list.$save({id: id}, function() {
