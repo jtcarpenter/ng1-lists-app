@@ -1,6 +1,10 @@
-<h2>{{list.title}} Items</h2>
+<h2>
+	{{list.title}} Items
+	<a href="" ng-click="itemPredicate = 'text'; itemReverse=!itemReverse">Title</a>
+	<a href="" ng-click="itemPredicate = 'created'; itemReverse=!itemReverse">Created</a>
+</h2>
 <ul class="unstyled">
-  <li ng-repeat="item in list.items">
+  <li ng-repeat="item in list.items | orderBy:itemPredicate:itemReverse">
     <input type="checkbox" ng-click="checkItem($index)" ng-model="item.done">
     <span class="done-{{item.done}}">{{item.text}}</span>
     <span>{{item.created | date:'dd-MM-yyyy'}}</span>

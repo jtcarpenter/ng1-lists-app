@@ -3,6 +3,8 @@
 app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
     function($scope, ListsLoader, List, $location) {
   $scope.lists = ListsLoader();
+  $scope.listPredicate = 'title';
+  $scope.listReverse = false;
 
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
@@ -27,6 +29,8 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
 app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams',
     '$location', 'list', function($scope, ListLoader, List, $routeParams, $location, list) {
   $scope.list = list;
+  $scope.itemPredicate = 'text';
+  $scope.itemReverse = false;
 
   $scope.addItem = function() {
     $scope.list.items = $scope.list.items || [];
