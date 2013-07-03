@@ -2,3 +2,4 @@
 .lists,.items{float:left;padding-right:5%;width:45%;}
 .remove{color:red;}
 .hide{display:none;}
+.selected{background:#ddd;}

@@ -1,10 +1,11 @@
 'use strict';
 
-app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
-    function($scope, ListsLoader, List, $location) {
+app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location', '$route',
+    function($scope, ListsLoader, List, $location, $route) {
   $scope.lists = ListsLoader();
   $scope.listPredicate = 'title';
   $scope.listReverse = false;
+  $scope.$route = $route;
 
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
