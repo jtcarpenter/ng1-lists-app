@@ -1,6 +1,10 @@
 'use strict';
 
-app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location', '$route',
+app.controller('MainCtrl', ['$scope', function($scope) {
+  $scope.title = 'Lists App';
+}]);
+
+app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$route',
     function($scope, ListsLoader, List, $location, $route) {
   $scope.lists = ListsLoader();
   $scope.listPredicate = 'title';
@@ -28,7 +32,7 @@ app.controller('ListsController', ['$scope', 'ListsLoader', 'List', '$location',
   };
 }]);
 
-app.controller('ItemsController', ['$scope', 'ListLoader', 'List', '$routeParams',
+app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     '$location', function($scope, ListLoader, List, $routeParams, $location) {
   $scope.list = ListLoader();
   $scope.itemPredicate = 'text';
