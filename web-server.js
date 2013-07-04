@@ -72,8 +72,10 @@ app.post('/lists', function(req, res) {
   list.modified = new Date();
 
   lists.insert(list);
-
-  res.send(list);
+  // TODO: Remove Timeout
+  setTimeout(function(){
+    res.send(list);
+  }, 500);
 });
 
 app.post('/lists/:id', function(req, res) {
@@ -86,7 +88,10 @@ app.post('/lists/:id', function(req, res) {
 
   lists.findOne(params, function(err, doc) {
     lists.update(params, {$set: {items: items, modified: modified}});
-    res.send(list);
+    // TODO: Remove Timeout
+    setTimeout(function(){
+      res.send(list);
+    }, 500);
   });
 });
 
@@ -96,7 +101,10 @@ app.del('/lists/:id', function(req, res) {
   params._id = ObjectId(req.params.id);
 
   lists.remove(params, function(err, doc) {
-    res.send('{"status":"200"}');
+    // TODO: Remove Timeout
+    setTimeout(function(){
+      res.send('{"status":"200"}');
+    }, 500);
   });
 });
 
