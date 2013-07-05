@@ -13,14 +13,16 @@
   <body ng-controller="MainCtrl">
     <header>
       <a href="#"><h1>{{title}}</h1></a>
-      <p id="spinner">Spinning...</p>
+      <div class="spinner-wrapper">
+        <img id="spinner" src="/img/spinner.gif"/>
+      </div>
     </header>
     <div ng-controller="ListsCtrl">
       <div class="lists">
         <h2>
           Lists
-          <a href="" ng-click="listPredicate = 'title'; listReverse=!listReverse">Title</a>
-          <a href="" ng-click="listPredicate = 'modified'; listReverse=!listReverse">Modified</a>
+          <a href="" ng-click="listPredicate = 'title'; listReverse =! listReverse">Title</a>
+          <a href="" ng-click="listPredicate = 'modified'; listReverse =! listReverse">Modified</a>
         </h2>
         <form ng-submit="addList()" name="addListForm">
           <div ng-show="listsMessage">{{listsMessage}}</div>
