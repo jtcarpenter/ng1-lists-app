@@ -1,6 +1,6 @@
 .done-true{text-decoration:line-through;color:grey;}
 .lists,.items{float:left;padding-right:5%;width:45%;}
-.remove{color:red;}
+.remove{color:#ff0000;}
 .hide{display:none;}
 .selected{background:#ddd;}
 .spinner-wrapper{height:16px;}

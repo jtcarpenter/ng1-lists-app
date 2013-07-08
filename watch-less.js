@@ -10,6 +10,11 @@ var srcDir = 'app/styles/less',
 	}),
 	parser = new(less.Parser);
 
+// TODO: Change so that main can be passed as an arg
+// or --all can be passed to parse all files
+// just uses main all the time
+watchFiles = ['main.less'];
+
 function watch(callback) {
 	compile(true, callback);
 	watchFiles.forEach(function(file) {
