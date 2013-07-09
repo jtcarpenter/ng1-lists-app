@@ -1,19 +1,14 @@
 var less = require('less'),
 	fs = require('fs'),
-	path = require('path');
-
-var srcDir = 'app/styles/less',
+	path = require('path'),
+	srcDir = 'app/styles/less',
 	saveDir = 'app/styles/css',
 	lessFiles = fs.readdirSync(srcDir),
 	watchFiles = lessFiles.filter(function(file) {
 		return !/^_|^\.+/.test(file);
 	}),
+	compileFiles = ['main.less'];
 	parser = new(less.Parser);
-
-// TODO: Change so that main can be passed as an arg
-// or --all can be passed to parse all files
-// just uses main all the time
-watchFiles = ['main.less'];
 
 function watch(callback) {
 	compile(true, callback);
@@ -28,9 +23,9 @@ function watch(callback) {
 }
 
 function compile(minify, callback) {
-	var min = min || true;
+	var min = minify || true;
 	var done = 0;
-	watchFiles.forEach(function(file) {
+	compileFiles.forEach(function(file) {
 		var filename = srcDir + '/' + file,
 			saveFilename = saveDir + '/' + path.basename(file, 'less') + 'css';
 		fs.readFile(filename, function(err, data) {
