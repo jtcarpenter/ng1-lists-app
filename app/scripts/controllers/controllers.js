@@ -21,6 +21,7 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
   };
 
   $scope.removeList = function(list) {
+    if (!confirm('Are you sure you want to remove \'' + list.title + '\'?')) return false;
     var oldListId = list._id;
     var index = $scope.lists.indexOf(list);
     list.$delete({id: oldListId}, function() {
@@ -61,6 +62,7 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
   };
 
   $scope.removeItem = function(item) {
+    if (!confirm('Are you sure you want to remove \'' + item.text + '\'?')) return false;
     var index = $scope.list.items.indexOf(item);
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
