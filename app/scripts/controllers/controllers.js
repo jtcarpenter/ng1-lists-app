@@ -44,6 +44,8 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
+      // TODO: Update with data, if it's ahead of what's in client
+      //$scope.list = data;
     }, function(data) {
       console.log(data);
     });

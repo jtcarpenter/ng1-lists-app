@@ -83,15 +83,22 @@ app.post('/lists/:id', function(req, res) {
   var params = {},
     list = {};
   params._id = ObjectId(req.params.id);
-  items = req.body.items || [];
-  modified = new Date();
+  var items = req.body.items || [];
 
   lists.findOne(params, function(err, doc) {
-    lists.update(params, {$set: {items: items, modified: modified}});
-    // TODO: Remove Timeout
-    setTimeout(function(){
-      res.send(list);
-    }, 500);
+    if (new Date(doc.modified).getTime() !== new Date(req.body.modified).getTime()) {
+      console.log('client out of sych with server');
+      // TODO: merge list stored on server with one posted
+    } else {
+      console.log('client in synch with server');
+    }
+    var modified = new Date();
+    lists.update(params, {$set: {items: items, modified: modified}}, function(list) {
+      // TODO: Remove Timeout
+      setTimeout(function(){
+        res.send(list);
+      }, 500);
+    });
   });
 });
 
