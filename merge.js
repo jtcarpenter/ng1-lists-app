@@ -15,7 +15,6 @@ function merge(arrs) {
     }
   }
   for (p in o) {
-    console.log(p);
     items.push(o[p]);
   }
   return items;

@@ -73,6 +73,7 @@ app.post('/lists', function(req, res) {
   list.modified = new Date();
 
   lists.insert(list);
+  // TODO: do error handling on insert
   // TODO: Remove Timeout
   setTimeout(function(){
     res.send(list);
@@ -81,20 +82,22 @@ app.post('/lists', function(req, res) {
 
 app.post('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id +' POST: title->' + req.body.title + ' items->' + req.body.items);
-  var params = {},
-    list = {};
-  params._id = ObjectId(req.params.id);
+  var params = {};
+  var list = {};
   var items = req.body.items || [];
+  params._id = ObjectId(req.params.id);
 
   lists.findOne(params, function(err, doc) {
     if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
       console.log('server ahead of client');
-      //items = merger.merge(doc.items, req.body.items);
+      items = merger.merge(doc.items, req.body.items);
     } else {
       console.log('client in synch with server');
     }
-    var modified = new Date();
-    lists.update(params, {$set: {items: items, modified: modified}}, function(list) {
+    list.modified = new Date();
+    list.items = items;
+    lists.update(params, {$set: {items: list.items, modified: list.modified}}, function(err, count) {
+      // TODO: Handle error
       // TODO: Remove Timeout
       setTimeout(function(){
         res.send(list);
@@ -109,6 +112,7 @@ app.del('/lists/:id', function(req, res) {
   params._id = ObjectId(req.params.id);
 
   lists.remove(params, function(err, doc) {
+    // TODO: Do error handling
     // TODO: Remove Timeout
     setTimeout(function(){
       res.send('{"status":"200"}');

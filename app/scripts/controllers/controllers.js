@@ -43,11 +43,11 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     $scope.list.items = $scope.list.items || [];
     $scope.list.items.push({text: $scope.itemText, done: false, created: new Date(), modified: new Date()});
     var id = $scope.list._id;
+    
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
-      // TODO: Update with data, if it's ahead of what's in client
-      //$scope.list = data;
-      //$scope.$apply();
+      $scope.list.modified = data.modified;
+      $scope.list.items = data.items;
     }, function(data) {
       console.log(data);
     });
@@ -57,7 +57,8 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     var id = $scope.list._id;
     item.modified = new Date();
     List.save({id: id}, $scope.list, function(data){
-      // TODO: Update with data, if it's ahead of what's in client
+      $scope.list.modified = data.modified;
+      $scope.list.items = data.items;
     }, function(data) {
       console.log(data);
     });
@@ -69,7 +70,8 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
-      // TODO: Update with data, if it's ahead of what's in client
+      $scope.list.modified = data.modified;
+      $scope.list.items = data.items;
     }, function(data) {
       console.log(data);
     });
