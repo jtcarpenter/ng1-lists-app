@@ -74,17 +74,20 @@ db.lists.insert([
       {
         text: 'Jaws',
         done: false,
-        created: new Date()
+        created: new Date(),
+        modified: new Date()
       }, 
       {
         text: 'Tron',
         done: false,
-        created: new Date()
+        created: new Date(),
+        modified: new Date()
       },
        {
         text: 'Star Wars',
         done: true,
-        created: new Date()
+        created: new Date(),
+        modified: new Date()
       }
     ],
     created: new Date(),
@@ -96,7 +99,8 @@ db.lists.insert([
       {
         text: 'GTA4',
         done: false,
-        created: new Date()
+        created: new Date(),
+        modified: new Date()
       }
     ],
     created: new Date(),

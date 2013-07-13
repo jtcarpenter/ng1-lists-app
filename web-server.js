@@ -1,4 +1,5 @@
 var express = require('express'),
+  merger = require('./merge'),
   app = express(),
   port = parseInt(process.env.PORT, 10) || 8080,
   mongodb = require('mongodb'),
@@ -86,9 +87,9 @@ app.post('/lists/:id', function(req, res) {
   var items = req.body.items || [];
 
   lists.findOne(params, function(err, doc) {
-    if (new Date(doc.modified).getTime() !== new Date(req.body.modified).getTime()) {
-      console.log('client out of sych with server');
-      // TODO: merge list stored on server with one posted
+    if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
+      console.log('server ahead of client');
+      //items = merger.merge(doc.items, req.body.items);
     } else {
       console.log('client in synch with server');
     }

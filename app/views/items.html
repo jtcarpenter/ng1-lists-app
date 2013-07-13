@@ -10,7 +10,7 @@
 </form>
 <ul class="unstyled">
   <li ng-repeat="item in list.items | orderBy:itemPredicate:itemReverse">
-    <input type="checkbox" ng-click="checkItem($index)" ng-model="item.done">
+    <input type="checkbox" ng-click="checkItem(item)" ng-model="item.done">
     <span class="done-{{item.done}}">{{item.text}}</span>
     <span>{{item.created | date:'dd-MM-yyyy'}}</span>
     <span class="remove" ng-click="removeItem(item)">remove</span>
