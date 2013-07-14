@@ -13,8 +13,9 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
 
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
-    $scope.list.$save(function(list) {
-      $scope.lists.push(list);
+    $scope.list.$save(function(data) {
+      // TODO: check data for error
+      $scope.lists.push(data);
       $location.path('/list/' + list._id);
       $scope.newList = undefined;
     });
@@ -24,7 +25,7 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
     if (!confirm('Are you sure you want to remove \'' + list.title + '\'?')) return false;
     var oldListId = list._id;
     var index = $scope.lists.indexOf(list);
-    list.$delete({id: oldListId}, function() {
+    list.$delete({id: oldListId}, function(data) {
       $scope.lists.splice(index, 1);
       if ($location.path() === '/list/' + oldListId) {
         $location.path('/');
@@ -46,6 +47,7 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
+      // TODO: check data for error
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -57,6 +59,7 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     var id = $scope.list._id;
     item.modified = new Date();
     List.save({id: id}, $scope.list, function(data){
+      // TODO: check data for error
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -70,6 +73,7 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
+      // TODO: check data for error
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {

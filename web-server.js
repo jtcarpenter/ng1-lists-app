@@ -45,6 +45,11 @@ app.get('/lists', function(req, res) {
   console.log('/lists GET:');
   var params = {};
   lists.find(params).toArray(function(err, docs) {
+    if (err) {
+      console.log('could not get lists');
+      // TODO: return err to client, 
+      return false;
+    }
     // TODO: Remove Timeout
     setTimeout(function(){
       res.send(docs);
@@ -57,6 +62,11 @@ app.get('/lists/:id', function(req, res) {
   var params = {};
   params._id = ObjectId(req.params.id);
   lists.findOne(params, function(err, doc) {
+    if (err) {
+      console.log('couldn\'t get list');
+      // TODO: return err to client
+      return false
+    }
     // TODO: Remove Timeout
     setTimeout(function(){
       res.send(doc);
@@ -72,12 +82,17 @@ app.post('/lists', function(req, res) {
   list.created = new Date();
   list.modified = new Date();
 
-  lists.insert(list);
-  // TODO: do error handling on insert
-  // TODO: Remove Timeout
-  setTimeout(function(){
-    res.send(list);
-  }, 500);
+  lists.insert(list, function(err, doc) {
+    if (err) {
+      console.log('couldn\'t insert new list');
+      // TODO: return err to client
+      return false;
+    }
+    // TODO: Remove Timeout
+    setTimeout(function(){
+      res.send(list);
+    }, 500);
+  });
 });
 
 app.post('/lists/:id', function(req, res) {
@@ -88,6 +103,15 @@ app.post('/lists/:id', function(req, res) {
   params._id = ObjectId(req.params.id);
 
   lists.findOne(params, function(err, doc) {
+    if (err) {
+      console.log(err);
+      return false;
+    }
+    if (!doc) {
+      console.log('no list found');
+      // TODO: return error message
+      return false;
+    }
     if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
       console.log('server ahead of client');
       items = merger.merge(doc.items, req.body.items);
@@ -97,7 +121,10 @@ app.post('/lists/:id', function(req, res) {
     list.modified = new Date();
     list.items = items;
     lists.update(params, {$set: {items: list.items, modified: list.modified}}, function(err, count) {
-      // TODO: Handle error
+      if (err) {
+        console.log(err);
+        return false;
+      }
       // TODO: Remove Timeout
       setTimeout(function(){
         res.send(list);
@@ -112,7 +139,11 @@ app.del('/lists/:id', function(req, res) {
   params._id = ObjectId(req.params.id);
 
   lists.remove(params, function(err, doc) {
-    // TODO: Do error handling
+    if (err) {
+      console.log('couldn\'t remove list');
+      // TODO: return err to client
+      return false;
+    }
     // TODO: Remove Timeout
     setTimeout(function(){
       res.send('{"status":"200"}');
