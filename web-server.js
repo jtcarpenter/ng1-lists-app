@@ -47,7 +47,7 @@ app.get('/lists', function(req, res) {
   lists.find(params).toArray(function(err, docs) {
     if (err) {
       console.log('could not get lists');
-      // TODO: return err to client, 
+      res.send({error: 'Could not get lists', status: 200});
       return false;
     }
     // TODO: Remove Timeout
@@ -63,8 +63,8 @@ app.get('/lists/:id', function(req, res) {
   params._id = ObjectId(req.params.id);
   lists.findOne(params, function(err, doc) {
     if (err) {
-      console.log('couldn\'t get list');
-      // TODO: return err to client
+      console.log('could not get list');
+      res.send({error: 'Could not get list', status: 200});
       return false
     }
     // TODO: Remove Timeout
@@ -84,8 +84,8 @@ app.post('/lists', function(req, res) {
 
   lists.insert(list, function(err, doc) {
     if (err) {
-      console.log('couldn\'t insert new list');
-      // TODO: return err to client
+      console.log('could not insert new list');
+      res.send({error: 'Could not insert new list', status: 200});
       return false;
     }
     // TODO: Remove Timeout
@@ -109,7 +109,7 @@ app.post('/lists/:id', function(req, res) {
     }
     if (!doc) {
       console.log('no list found');
-      // TODO: return error message
+      res.send({error: '\'' + req.body.title + '\' list does not exist', status: 200});
       return false;
     }
     if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
@@ -140,8 +140,8 @@ app.del('/lists/:id', function(req, res) {
 
   lists.remove(params, function(err, doc) {
     if (err) {
-      console.log('couldn\'t remove list');
-      // TODO: return err to client
+      console.log('could not remove list');
+      res.send({error: 'Could not remove list', status: 200});
       return false;
     }
     // TODO: Remove Timeout

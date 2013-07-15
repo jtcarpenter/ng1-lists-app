@@ -4,8 +4,8 @@ app.controller('MainCtrl', ['$scope', function($scope) {
   $scope.title = 'Lists App';
 }]);
 
-app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$route',
-    function($scope, ListsLoader, List, $location, $route) {
+app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$location', '$route',
+    function($scope, $rootScope, ListsLoader, List, $location, $route) {
   $scope.lists = ListsLoader();
   $scope.listPredicate = 'title';
   $scope.listReverse = false;
@@ -14,9 +14,12 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
     $scope.list.$save(function(data) {
-      // TODO: check data for error
+      if (data.error) {
+        $rootScope.flash = data.error;
+        // TODO: Handle case that list couldn't be added (return false)
+      }
       $scope.lists.push(data);
-      $location.path('/list/' + list._id);
+      $location.path('/list/' + data._id);
       $scope.newList = undefined;
     });
   };
@@ -26,6 +29,10 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
     var oldListId = list._id;
     var index = $scope.lists.indexOf(list);
     list.$delete({id: oldListId}, function(data) {
+      if (data.error) {
+        $rootScope.flash = data.error;
+        // TODO: Handle case that list couldn't be removed (return false)
+      }
       $scope.lists.splice(index, 1);
       if ($location.path() === '/list/' + oldListId) {
         $location.path('/');
@@ -34,8 +41,8 @@ app.controller('ListsCtrl', ['$scope', 'ListsLoader', 'List', '$location', '$rou
   };
 }]);
 
-app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
-    '$location', function($scope, ListLoader, List, $routeParams, $location) {
+app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$routeParams',
+    '$location', function($scope, $rootScope, ListLoader, List, $routeParams, $location) {
   $scope.list = ListLoader();
   $scope.itemPredicate = 'text';
   $scope.itemReverse = false;
@@ -47,7 +54,10 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
-      // TODO: check data for error
+      if (data.error) {
+        $rootScope.flash = data.error;
+        // TODO: Handle case that list couldn't be edited (remove list?)
+      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -59,7 +69,10 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     var id = $scope.list._id;
     item.modified = new Date();
     List.save({id: id}, $scope.list, function(data){
-      // TODO: check data for error
+      if (data.error) {
+        $rootScope.flash = data.error;
+        // TODO: Handle case that list couldn't be checked (toggle back item?, return false)
+      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -73,7 +86,10 @@ app.controller('ItemsCtrl', ['$scope', 'ListLoader', 'List', '$routeParams',
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
-      // TODO: check data for error
+      if (data.error) {
+        $rootScope.flash = data.error;
+        // TODO: Handle case that list couldn't be edited (remove list?)
+      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
