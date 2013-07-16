@@ -159,3 +159,18 @@ and a usersController
 * Authentication Tutorial <http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app>
 
 * Various AngularJS tutorials <http://www.egghead.io/>
+
+* Unix permissions:
+
+(work) Mac ~/sites:                     drwxr-xr-x+   66 jason        staff
+edf.acknowledgement.co.uk /home/sites:  drwxrwsr-x    21 tomh         devteam
+edf live 4 /home/sites: 4               drwxrwsr-x     6 jameswalton  devteam
+
+* Raspberry PI setup
+
+Install MongoDB
+Set up sites directory for app
+Get local app running
+Get SHH access working
+Make app accessible on network
+Make app accessible on Web
