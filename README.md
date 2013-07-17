@@ -173,7 +173,7 @@ Set up sites directory for app
 Get local app running  
 Get SHH access working  
 Make app accessible on network  
-Make app accessible on Web  
+Make app accessible on Web (make sure mongodb is not available on network)      
 
 * We could use an angular factory to define a list object (see example in book)
 
