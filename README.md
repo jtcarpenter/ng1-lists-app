@@ -174,3 +174,11 @@ Get local app running
 Get SHH access working  
 Make app accessible on network  
 Make app accessible on Web  
+
+* We could use an angular factory to define a list object (see example in book)
+
+* Use example in book to see how to test angulary controllers an directives in respective chapters
+
+* Flash directive can probably use $compile instead of $link, because it does't need a scope
+
+* Look into angular animate API for flash directive <http://code.angularjs.org/1.1.4/docs/api/ng.directive:ngAnimate>
