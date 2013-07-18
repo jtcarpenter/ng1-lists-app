@@ -47,12 +47,12 @@ app.get('/lists', function(req, res) {
   lists.find(params).toArray(function(err, docs) {
     if (err) {
       console.log('could not get lists');
-      res.send({error: 'Could not get lists', status: 200});
+      res.send(404, {error: 'Could not get lists', success: false});
       return false;
     }
     // TODO: Remove Timeout
     setTimeout(function(){
-      res.send(docs);
+      res.send(200, docs);
     }, 500);
   });
 });
@@ -64,12 +64,12 @@ app.get('/lists/:id', function(req, res) {
   lists.findOne(params, function(err, doc) {
     if (err) {
       console.log('could not get list');
-      res.send({error: 'Could not get list', status: 200});
+      res.send(404, {error: 'Could not get list', success: false});
       return false
     }
     // TODO: Remove Timeout
     setTimeout(function(){
-      res.send(doc);
+      res.send(200, doc);
     }, 500);
   });
 });
@@ -85,12 +85,12 @@ app.post('/lists', function(req, res) {
   lists.insert(list, function(err, doc) {
     if (err) {
       console.log('could not insert new list');
-      res.send({error: 'Could not insert new list', status: 200});
+      res.send(500, {error: 'Could not insert new list', success: false});
       return false;
     }
     // TODO: Remove Timeout
     setTimeout(function(){
-      res.send(list);
+      res.send(200, list);
     }, 500);
   });
 });
@@ -104,12 +104,12 @@ app.post('/lists/:id', function(req, res) {
 
   lists.findOne(params, function(err, doc) {
     if (err) {
-      console.log(err);
+      console.log(500, err);
       return false;
     }
     if (!doc) {
       console.log('no list found');
-      res.send({error: '\'' + req.body.title + '\' list does not exist', status: 200});
+      res.send(404, {error: '\'' + req.body.title + '\' list does not exist', success: false});
       return false;
     }
     if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
@@ -127,7 +127,7 @@ app.post('/lists/:id', function(req, res) {
       }
       // TODO: Remove Timeout
       setTimeout(function(){
-        res.send(list);
+        res.send(200, list);
       }, 500);
     });
   });
@@ -141,12 +141,12 @@ app.del('/lists/:id', function(req, res) {
   lists.remove(params, function(err, doc) {
     if (err) {
       console.log('could not remove list');
-      res.send({error: 'Could not remove list', status: 200});
+      res.send(500, {error: 'Could not remove list', success: false});
       return false;
     }
     // TODO: Remove Timeout
     setTimeout(function(){
-      res.send('{"status":"200"}');
+      res.send(200, {success: true});
     }, 500);
   });
 });
