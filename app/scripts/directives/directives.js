@@ -7,12 +7,13 @@ directives.directive('flash', ['$rootScope', function($rootScope) {
     link: function(scope, element, attrs) {
       scope.$watch('flash', function(message) { 
         if (typeof message !== 'undefined' && message !== '') {
-          // TODO: fade out animation and reset
+          element.addClass('in');
+          element.removeClass('out');
           setTimeout(function() {
-            element.text('');
+            element.addClass('out');
           }, 2000);
         }
-      }); 
+      });
     }
   };
 }]);

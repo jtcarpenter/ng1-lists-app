@@ -17,22 +17,36 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 
   var spinner;
   var spinnerFrame;
-  $httpProvider.defaults.headers.common['X-Blog-Version'] = '1.0'; // first thing we do when sending a request: pop a spinner 
+  $httpProvider.defaults.headers.common['X-Blog-Version'] = '1.0';
   $httpProvider.defaults.transformRequest.unshift(function (req) {
+    // Intercept request
     spinner = angular.element(document.getElementById('spinner'));
     spinnerFrame = angular.element(document.getElementById('spinner-frame'));
-    spinner.css('display', 'block');
-    spinnerFrame.css('display', 'none');
-    //spinner.removeClass('frame').addClass('spin');
-    return req; // return request unspoiled
+    spinner.removeClass('frame').addClass('spin');
+    return req;
   });
-  // last thing we do when retrieving a response (before success() and the like): // hide the spinner.
+
   $httpProvider.defaults.transformResponse.push(function (res) {
+    // Intercept response
     if (spinner) {
-      spinner.css('display', 'none');
-      spinnerFrame.css('display', 'block');
-      //spinner.removeClass('spin').addClass('frame');
+      spinner.removeClass('spin').addClass('frame');
     }
-    return res; // return response unspoiled 
+    return res;
   });
+
+  $httpProvider.responseInterceptors.push(['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
+    // Intercept response
+    return function (promise) {
+      return promise.then(function(res){
+          return res;
+        }, function(res) {
+        if (res.status !== 200) {
+          var flash = res.status;
+          if (res.data.error) flash = res.data.error;
+          $rootScope.flash = flash;
+        } 
+        return $q.reject(res);
+      });
+    }; 
+  }]);
 }]);

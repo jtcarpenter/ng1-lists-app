@@ -15,7 +15,6 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
     $scope.list = new List($scope.newList);
     $scope.list.$save(function(data) {
       if (data.error) {
-        $rootScope.flash = data.error;
         // TODO: Handle case that list couldn't be added (return false)
       }
       $scope.lists.push(data);
@@ -30,7 +29,6 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
     var index = $scope.lists.indexOf(list);
     list.$delete({id: oldListId}, function(data) {
       if (data.error) {
-        $rootScope.flash = data.error;
         // TODO: Handle case that list couldn't be removed (return false)
       }
       $scope.lists.splice(index, 1);
@@ -55,7 +53,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
       if (data.error) {
-        $rootScope.flash = data.error;
         // TODO: Handle case that list couldn't be edited (remove list?)
       }
       $scope.list.modified = data.modified;
@@ -70,7 +67,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     item.modified = new Date();
     List.save({id: id}, $scope.list, function(data){
       if (data.error) {
-        $rootScope.flash = data.error;
         // TODO: Handle case that list couldn't be checked (toggle back item?, return false)
       }
       $scope.list.modified = data.modified;
@@ -87,7 +83,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
       if (data.error) {
-        $rootScope.flash = data.error;
         // TODO: Handle case that list couldn't be edited (remove list?)
       }
       $scope.list.modified = data.modified;

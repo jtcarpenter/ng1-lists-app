@@ -47,7 +47,7 @@ app.get('/lists', function(req, res) {
   lists.find(params).toArray(function(err, docs) {
     if (err) {
       console.log('could not get lists');
-      res.send(404, {error: 'Could not get lists', success: false});
+      res.send(404, {error: 'Could not get lists'});
       return false;
     }
     // TODO: Remove Timeout
@@ -64,7 +64,7 @@ app.get('/lists/:id', function(req, res) {
   lists.findOne(params, function(err, doc) {
     if (err) {
       console.log('could not get list');
-      res.send(404, {error: 'Could not get list', success: false});
+      res.send(404, {error: 'Could not get list'});
       return false
     }
     // TODO: Remove Timeout
@@ -85,7 +85,7 @@ app.post('/lists', function(req, res) {
   lists.insert(list, function(err, doc) {
     if (err) {
       console.log('could not insert new list');
-      res.send(500, {error: 'Could not insert new list', success: false});
+      res.send(500, {error: 'Could not insert new list'});
       return false;
     }
     // TODO: Remove Timeout
@@ -109,7 +109,7 @@ app.post('/lists/:id', function(req, res) {
     }
     if (!doc) {
       console.log('no list found');
-      res.send(404, {error: '\'' + req.body.title + '\' list does not exist', success: false});
+      res.send(404, {error: '\'' + req.body.title + '\' list does not exist'});
       return false;
     }
     if (new Date(doc.modified).getTime() > new Date(req.body.modified).getTime()) {
@@ -141,7 +141,7 @@ app.del('/lists/:id', function(req, res) {
   lists.remove(params, function(err, doc) {
     if (err) {
       console.log('could not remove list');
-      res.send(500, {error: 'Could not remove list', success: false});
+      res.send(500, {error: 'Could not remove list'});
       return false;
     }
     // TODO: Remove Timeout
