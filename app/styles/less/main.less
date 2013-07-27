@@ -1,62 +1,22 @@
 @import "app/styles/less/colors";
-html { 
-  font-size: 62.5%;
+@import "app/styles/less/core";
+
+/* Landscape phones and down */
+@media (max-width: 767px) {
+  // @import "mobile";
 }
-body {
-  margin: 0;
-  padding: 0;
+
+/* Landscape phone to portrait tablet */
+@media (min-width: 768px) and (max-width: 979px) {
+  // @import "tablet";
 }
-header {
-  margin: 0;
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 980px) {
+  // @import "desktop";
 }
-.done-true {
-  text-decoration: line-through;
-  color: grey;
-}
-.lists,
-.items {
-  float: left;
-  padding-right: 5%;
-  width: 45%;
-}
-.remove {
-  color: @red;
-}
-.hide {
-  display: none;
-}
-.selected {
-  background: #ddd;
-}
-.spinner-wrapper {
-  height: 16px;
-}
-.spinner {
-  height: 50px;
-  width: 50px;
-  background-repeat: no-repeat;
-  display: block;
-}
-.spin {
-  background-image: url('/img/spinner.gif');
-}
-.frame {
-  background-image: url('/img/spinner-frame.png');
-}
-.flash {
-  opacity: 1.0;
-  background-color: #dfd;
-  transition: opacity 0.5s, height 0.75s ease-in;
-  -moz-transition: opacity 0.5s, height 0.75s ease-in;
-  -o-transition: opacity 0.5s, height 0.75s ease-in;
-  -webkit-transition: opacity 0.5s, height 0.75s ease-in;
-  margin: 0;
-}
-.flash.in {
-  height: 100%;
-  opacity: 1.0;
-}
-.flash.out {
-  height: 0;
-  opacity: 0.0;
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  // @import "large-desktop";
 }
