@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MainCtrl', ['$scope', function($scope) {
+app.controller('MainCtrl', ['$scope',function($scope) {
   $scope.title = 'Lists App';
 }]);
 
@@ -10,6 +10,11 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
   $scope.listPredicate = 'title';
   $scope.listReverse = false;
   $scope.$route = $route;
+
+  $scope.reload = function() {
+    $scope.lists = ListsLoader();
+    $route.reload();
+  }
 
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
