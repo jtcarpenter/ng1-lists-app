@@ -44,6 +44,10 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
           var flash = res.status;
           if (res.data.error) flash = res.data.error;
           $rootScope.flash = flash;
+          setTimeout(function() {
+            $rootScope.flash = '';
+            $rootScope.$apply();
+          }, 2000);
         } 
         return $q.reject(res);
       });

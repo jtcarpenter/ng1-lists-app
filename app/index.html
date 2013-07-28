@@ -12,13 +12,12 @@
   </head>
   <body>
     <header>
-      <!-- ng-show="flash.length" to check for flash !== '' -->
-      <p class="flash">{{flash}}</p>
+      <p class="flash" ng-show="flash.length">{{flash}}</p>
       <a href="#"><h1>{{title}}</h1></a>
     </header>
     <div ng-controller="ListsCtrl">
       <div ng-click="reload()" class="spinner-wrapper">
-        <span id="spinner" class="spinner frame"></span>
+        <span id="spinner" class="spinner frame clickable"></span>
       </div>
       <div class="lists">
         <h2>
@@ -36,7 +35,7 @@
             <h3 ng-click="showItems(list)">
               <a href="#/list/{{list._id}}">{{list.title}}</a>
               <span modified>{{list.modified | date:'dd-MM-yyyy'}}</span>
-              <span class="remove" ng-click="removeList(list)">remove</span>
+              <span class="remove clickable" ng-click="removeList(list)">remove</span>
             </h3>
           </li>
         </ul>

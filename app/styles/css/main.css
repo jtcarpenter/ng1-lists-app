@@ -1,6 +1,4 @@
-.flash{opacity:1.0;background-color:#dfd;transition:opacity 0.5s,height 0.75s ease-in;-moz-transition:opacity 0.5s,height 0.75s ease-in;-o-transition:opacity 0.5s,height 0.75s ease-in;-webkit-transition:opacity 0.5s,height 0.75s ease-in;margin:0;}
-.flash.in{height:100%;opacity:1.0;}
-.flash.out{height:0;opacity:0.0;}
+.flash{margin:0;background-color:#dfd;}
 .spinner-wrapper{height:16px;}
 .spinner{height:50px;width:50px;background-repeat:no-repeat;display:block;}
 .spin{background-image:url('/img/spinner.gif');}
@@ -12,6 +10,7 @@ h1{font-size:4.5rem;}
 h2{font-size:3.5rem;}
 h3{font-size:3rem;}
 p,li,a,span,input,button{font-size:2.5rem;}
+.clickable{cursor:pointer;}
 .done-true{text-decoration:line-through;color:grey;}
 .lists,.items{float:left;padding-right:5%;width:45%;}
 .remove{color:#ff0000;}

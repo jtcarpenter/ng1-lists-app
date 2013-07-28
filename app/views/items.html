@@ -13,6 +13,6 @@
     <input type="checkbox" ng-click="checkItem(item)" ng-model="item.done">
     <span class="done-{{item.done}}">{{item.text}}</span>
     <span>{{item.created | date:'dd-MM-yyyy'}}</span>
-    <span class="remove" ng-click="removeItem(item)">remove</span>
+    <span class="remove clickable" ng-click="removeItem(item)">remove</span>
   </li>
 </ul>

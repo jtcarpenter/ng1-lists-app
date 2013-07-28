@@ -2,19 +2,10 @@
 
 var directives = angular.module('listsApp.directives', []);
 
-directives.directive('flash', ['$rootScope', function($rootScope) {
+directives.directive('myDir', ['$rootScope', function($rootScope) {
   return {
     link: function(scope, element, attrs) {
-      scope.$watch('flash', function(message) { 
-        if (typeof message !== 'undefined' && message !== '') {
-          //element.addClass('in');
-          //element.removeClass('out');
-          setTimeout(function() {
-            //element.text('');
-            //element.addClass('out');
-          }, 2000);
-        }
-      });
+      // Directive code here
     }
   };
 }]);
