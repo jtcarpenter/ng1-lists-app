@@ -12,7 +12,8 @@
   </head>
   <body>
     <header>
-      <p flash class="flash">{{flash}}</p>
+      <!-- ng-show="flash.length" to check for flash !== '' -->
+      <p class="flash">{{flash}}</p>
       <a href="#"><h1>{{title}}</h1></a>
     </header>
     <div ng-controller="ListsCtrl">

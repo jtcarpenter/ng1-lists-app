@@ -19,9 +19,6 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
   $scope.addList = function() {
     $scope.list = new List($scope.newList);
     $scope.list.$save(function(data) {
-      if (data.error) {
-        // TODO: Handle case that list couldn't be added (return false)
-      }
       $scope.lists.push(data);
       $location.path('/list/' + data._id);
       $scope.newList = undefined;
@@ -33,9 +30,6 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
     var oldListId = list._id;
     var index = $scope.lists.indexOf(list);
     list.$delete({id: oldListId}, function(data) {
-      if (data.error) {
-        // TODO: Handle case that list couldn't be removed (return false)
-      }
       $scope.lists.splice(index, 1);
       if ($location.path() === '/list/' + oldListId) {
         $location.path('/');
@@ -58,9 +52,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     
     List.save({id: id}, $scope.list, function(data){
       $scope.itemText = undefined;
-      if (data.error) {
-        // TODO: Handle case that list couldn't be edited (remove list?)
-      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -72,9 +63,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     var id = $scope.list._id;
     item.modified = new Date();
     List.save({id: id}, $scope.list, function(data){
-      if (data.error) {
-        // TODO: Handle case that list couldn't be checked (toggle back item?, return false)
-      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
@@ -88,9 +76,6 @@ app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$rou
     $scope.list.items.splice(index, 1);
     var id = $scope.list._id;
     List.save({id: id}, $scope.list, function(data){
-      if (data.error) {
-        // TODO: Handle case that list couldn't be edited (remove list?)
-      }
       $scope.list.modified = data.modified;
       $scope.list.items = data.items;
     }, function(data) {
