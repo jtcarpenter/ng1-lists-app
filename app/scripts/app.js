@@ -50,3 +50,14 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
     }; 
   }]);
 }]);
+
+app.factory('ItemModel', function() {
+  var ItemModel = function(text, done, created, modified) {
+    this.text = text || '';
+    this.done = done || false;
+    this.created = created || new Date();
+    this.modified = modified || new Date();
+  }
+
+  return ItemModel;
+});

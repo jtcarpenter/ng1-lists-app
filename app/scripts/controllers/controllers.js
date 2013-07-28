@@ -44,15 +44,16 @@ app.controller('ListsCtrl', ['$scope', '$rootScope', 'ListsLoader', 'List', '$lo
   };
 }]);
 
-app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$routeParams',
-    '$location', function($scope, $rootScope, ListLoader, List, $routeParams, $location) {
+app.controller('ItemsCtrl', ['$scope', '$rootScope', 'ListLoader', 'List', '$routeParams', 'ItemModel',
+   function($scope, $rootScope, ListLoader, List, $routeParams, ItemModel) {
   $scope.list = ListLoader();
   $scope.itemPredicate = 'text';
   $scope.itemReverse = false;
 
   $scope.addItem = function() {
     $scope.list.items = $scope.list.items || [];
-    $scope.list.items.push({text: $scope.itemText, done: false, created: new Date(), modified: new Date()});
+    var itemModel = new ItemModel($scope.itemText);
+    $scope.list.items.push(itemModel);
     var id = $scope.list._id;
     
     List.save({id: id}, $scope.list, function(data){
