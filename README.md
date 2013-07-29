@@ -114,6 +114,8 @@ $ karma run
 ```
 # Notes
 
+* [http://www.befundoo.com/university/tutorials/angularjs-directives-tutorial/](http://www.befundoo.com/university/tutorials/angularjs-directives-tutorial/)
+
 * Unix permissions:
 
 (work) Mac ~/sites:                     drwxr-xr-x+   66 jason        staff  

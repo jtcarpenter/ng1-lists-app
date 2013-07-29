@@ -23,6 +23,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
     spinner = angular.element(document.getElementById('spinner'));
     spinnerFrame = angular.element(document.getElementById('spinner-frame'));
     spinner.removeClass('frame').addClass('spin');
+
     return req;
   });
 

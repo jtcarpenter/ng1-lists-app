@@ -2,10 +2,22 @@
 
 var directives = angular.module('listsApp.directives', []);
 
-directives.directive('myDir', ['$rootScope', function($rootScope) {
+directives.directive('fundooRating', function () {
   return {
-    link: function(scope, element, attrs) {
-      // Directive code here
+    restrict: 'A',
+    template: '<ul class="rating">' +
+                '<li ng-repeat="star in stars" class="filled">' +
+                  '\u2605' +
+                  '</li>' +
+              '</ul>',
+    scope: {
+      ratingValue: '='
+    },
+    link: function (scope, elem, attrs) {
+      scope.stars = [];
+      for (var i = 0; i < scope.ratingValue; i++) {
+        scope.stars.push({});
+      }
     }
-  };
-}]);
+  }
+});
