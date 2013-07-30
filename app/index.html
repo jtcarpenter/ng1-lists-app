@@ -10,9 +10,8 @@
     <script src="/scripts/controllers/controllers.js"></script>
     <link rel="stylesheet" href="/styles/css/main.css">
   </head>
-  <body ng-init="rating=5">
+  <body>
     <header>
-      <div fundoo-rating rating-value="rating"></div>
       <p class="flash" ng-show="flash.length" ng-class="{'flash-show': flash.length, 'flash-hide': !flash.length}">{{flash}}</p>
       <a href="#"><h1>{{title}}</h1></a>
     </header>
