@@ -21,8 +21,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
   $httpProvider.defaults.transformRequest.unshift(function (req) {
     // Intercept request
     spinner = angular.element(document.getElementById('spinner'));
-    spinnerFrame = angular.element(document.getElementById('spinner-frame'));
-    spinner.removeClass('frame').addClass('spin');
+    spinner.addClass('spin');
 
     return req;
   });
@@ -30,7 +29,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
   $httpProvider.defaults.transformResponse.push(function (res) {
     // Intercept response
     if (spinner) {
-      spinner.removeClass('spin').addClass('frame');
+      spinner.removeClass('spin');
     }
     return res;
   });
