@@ -27,7 +27,7 @@
         </h2>
         <form ng-submit="addList()" name="addListForm">
           <div ng-show="listsMessage">{{listsMessage}}</div>
-          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="add new list here" value="{{listTitle}}">
+          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="Add new a list here" value="{{listTitle}}" spellcheck="true">
           <input class="btn-primary" ng-disabled="!addListForm.$valid" type="submit" value="add">
         </form>
         <ul class="unstyled">
