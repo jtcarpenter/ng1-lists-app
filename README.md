@@ -59,7 +59,7 @@ Set up DB
 
 ```
 $ mongo lists-app
-> db.addCollection('lists')
+> db.createCollection('lists')
 ```
 
 Add seed data
