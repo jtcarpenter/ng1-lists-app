@@ -129,4 +129,18 @@ Set up sites directory for app (see Unix permissions above)
 Get local app running  
 Get SHH access working  
 Make app accessible on network  
-Make app accessible on Web (make sure mongodb is not available on network)      
+Make app accessible on Web (make sure mongodb is not available on network)     
+
+* Mongodb backups
+
+You can make simple backups with
+
+```
+$ mongod
+$ mongodump --db lists-app
+
+connected to: 127.0.0.1
+Sat Aug 10 15:05:06.450 DATABASE: test	 to 	dump/test
+``
+
+They can be resotored with *mongorestore*  
