@@ -118,9 +118,11 @@ $ karma run
 
 * Unix permissions:
 
+```
 (work) Mac ~/sites:                     drwxr-xr-x+   66 jason        staff  
 edf.acknowledgement.co.uk /home/sites:  drwxrwsr-x    21 tomh         devteam  
 edf live 4 /home/sites: 4               drwxrwsr-x     6 jameswalton  devteam  
+```
 
 * Raspberry PI setup
 
@@ -144,3 +146,7 @@ Sat Aug 10 15:05:06.450 DATABASE: test	 to 	dump/test
 ``
 
 They can be resotored with *mongorestore*  
+
+```
+$ mongorestore --collection lists --db lists-app dump/foo/lists.bson 
+```
