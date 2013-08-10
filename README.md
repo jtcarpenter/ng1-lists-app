@@ -143,7 +143,7 @@ $ mongodump --db lists-app
 
 connected to: 127.0.0.1
 Sat Aug 10 15:05:06.450 DATABASE: test	 to 	dump/test
-``
+```
 
 They can be resotored with *mongorestore*  
 
