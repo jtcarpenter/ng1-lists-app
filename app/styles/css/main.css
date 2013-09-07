@@ -35,4 +35,4 @@ input[type=checkbox]{visibility:hidden;}
 .remove{color:#ff0000;}
 .hide{display:none;}
 .selected{background-color:#dddddd;}
-@media (max-width:767px){}@media (min-width:768px) and (max-width:979px){}@media (min-width:980px){}@media (min-width:1200px){}
+@media (max-width:767px){.main{position:relative;} .lists,.items{position:absolute;top:0;padding:0 5% 0 5%;width:90%;} .items{-webkit-transition:opacity 0.4s ease-in-out;-moz-transition:opacity 0.4s ease-in-out;-o-transition:opacity 0.4s ease-in-out;transition:opacity 0.4s ease-in-out;} .items.open{opacity:1.0;} .items.closed{opacity:0.0;} .lists.open{opacity:0.0;} .lists.closed{opacity:1.0;} .lists,.items{left:0;}}@media (min-width:768px) and (max-width:979px){.lists,.items{float:left;padding:5%;width:40%;}}@media (min-width:980px){.lists,.items{float:left;padding:5%;width:40%;}}@media (min-width:1200px){.lists,.items{float:left;padding:5%;width:40%;}}
