@@ -59,7 +59,7 @@ Set up DB
 
 ```
 $ mongo lists-app
-> db.addCollection('lists')
+> db.createCollection('lists')
 ```
 
 Add seed data
@@ -118,9 +118,11 @@ $ karma run
 
 * Unix permissions:
 
+```
 (work) Mac ~/sites:                     drwxr-xr-x+   66 jason        staff  
 edf.acknowledgement.co.uk /home/sites:  drwxrwsr-x    21 tomh         devteam  
 edf live 4 /home/sites: 4               drwxrwsr-x     6 jameswalton  devteam  
+```
 
 * Raspberry PI setup
 
@@ -129,4 +131,22 @@ Set up sites directory for app (see Unix permissions above)
 Get local app running  
 Get SHH access working  
 Make app accessible on network  
-Make app accessible on Web (make sure mongodb is not available on network)      
+Make app accessible on Web (make sure mongodb is not available on network)     
+
+* Mongodb backups
+
+You can make simple backups with
+
+```
+$ mongod
+$ mongodump --db lists-app
+
+connected to: 127.0.0.1
+Sat Aug 10 15:05:06.450 DATABASE: test	 to 	dump/test
+```
+
+They can be resotored with *mongorestore*  
+
+```
+$ mongorestore --collection lists --db lists-app dump/foo/lists.bson 
+```
