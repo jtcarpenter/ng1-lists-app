@@ -1,18 +1,22 @@
-<h2>
-	{{list.title}} Items
-	<a href="" ng-click="itemPredicate = 'text'; itemReverse=!itemReverse">Title</a>
-	<a href="" ng-click="itemPredicate = 'created'; itemReverse=!itemReverse">Created</a>
-</h2>
-<form ng-submit="addItem()" ng-show="list" name="addItemForm">
-  <div ng-show="itemsMessage">{{itemsMessage}}</div>
-  <input type="text" ng-model="itemText" required size="30" placeholder="Add a new item here" value="{{listTitle}}" spellcheck="true">
-  <input class="btn-primary" type="submit" value="add" ng-disabled="!addItemForm.$valid">
-</form>
-<ul class="unstyled">
-  <li ng-repeat="item in list.items | orderBy:itemPredicate:itemReverse">
-    <input type="checkbox" ng-click="checkItem(item)" ng-model="item.done">
-    <span class="done-{{item.done}}">{{item.text}}</span>
-    <span>{{item.created | date:'dd-MM-yyyy'}}</span>
-    <span class="remove clickable" ng-click="removeItem(item)">remove</span>
-  </li>
-</ul>
+<div class="items {{state}}">
+  <h2>
+    {{list.title}}
+    <a href="" ng-click="itemPredicate = 'text'; itemReverse=!itemReverse">Title</a>
+    <a href="" ng-click="itemPredicate = 'created'; itemReverse=!itemReverse">Created</a>
+  </h2>
+  <form ng-submit="addItem()" ng-show="list" name="addItemForm">
+    <div ng-show="itemsMessage">{{itemsMessage}}</div>
+    <input type="text" ng-model="itemText" required size="30" placeholder="Add a new item here" value="{{listTitle}}" spellcheck="true"><input class="btn-primary" type="submit" value="add" ng-disabled="!addItemForm.$valid">
+  </form>
+  <ul class="unstyled">
+    <li ng-repeat="item in list.items | orderBy:itemPredicate:itemReverse">
+      <div class="checkbox">
+        <input type="checkbox" ng-click="checkItem(item)" ng-model="item.done" id="{{item.text}}">
+        <label for="{{item.text}}"></label>
+      </div>
+      <span class="done-{{item.done}} item-text">{{item.text}}</span>
+      <span>{{item.created | date:'dd-MM-yyyy'}}</span>
+      <span class="remove clickable" ng-click="removeItem(item)">remove</span>
+    </li>
+  </ul>
+</div>

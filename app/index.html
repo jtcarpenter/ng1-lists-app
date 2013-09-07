@@ -16,10 +16,10 @@
       <div ng-click="reload()" class="spinner-wrapper">
         <div id="spinner" class="spinner clickable"></div>
       </div>
-      <a href="#"><h1 ng-bind="title"></h1></a>
+      <a href="#" ng-click="close()"><h1 ng-bind="title"></h1></a>
     </header>
-    <div>
-      <div class="lists">
+    <div class="main">
+      <div class="lists {{state}}" id="lists">
         <h2>
           Lists
           <a href="" ng-click="listPredicate = 'title'; listReverse =! listReverse">Title</a>
@@ -27,20 +27,17 @@
         </h2>
         <form ng-submit="addList()" name="addListForm">
           <div ng-show="listsMessage">{{listsMessage}}</div>
-          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="Add new a list here" value="{{listTitle}}" spellcheck="true">
-          <input class="btn-primary" ng-disabled="!addListForm.$valid" type="submit" value="add">
+          <input type="text" ng-model="newList.title" id="title" required size="30" placeholder="Add new a list here" value="{{listTitle}}" spellcheck="true"><input class="btn-primary foo" ng-disabled="!addListForm.$valid" type="submit" value="add">
         </form>
         <ul class="unstyled">
-          <li ng-repeat="list in lists | orderBy:listPredicate:listReverse" ng-class="{selected: list._id == $route.current.params.id}">
-            <h3 ng-click="showItems(list)">
-              <a href="#/list/{{list._id}}">{{list.title}}</a>
+          <li ng-repeat="list in lists | orderBy:listPredicate:listReverse" ng-class="{selected: list._id == $route.current.params.id}" ng-click="showItems(list)">
+              <a href="#/list/{{list._id}}" ng-click="open()" class="list-text">{{list.title}}</a>
               <span modified>{{list.modified | date:'dd-MM-yyyy'}}</span>
               <span class="remove clickable" ng-click="removeList(list)">remove</span>
-            </h3>
           </li>
         </ul>
       </div>
-      <div ng-view class="items"></div>
+      <div ng-view></div>
     </div>
   </body>
 </html>

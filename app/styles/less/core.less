@@ -1,17 +1,18 @@
-@import "app/styles/less/flash";
-@import "app/styles/less/spinner";
-
 html { 
-  font-size: 62.5%;
+  font-size: @fontSizeGlobal;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: @courier;
+  color: @textColor;
 }
 
 header {
   margin: 0;
+  height: @fontSizeH1;
+  padding: @padding @padding 0 @padding;
 }
 
 ul {
@@ -23,19 +24,106 @@ li {
 }
 
 h1 {
-  font-size: 4.5rem;
+  font-size: @fontSizeH1;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: @fontSizeH2;
 }
 
 h3 {
-  font-size: 3rem;
+  font-size: @fontSizeH3;
 }
 
 p, li, a, span, input, button {
-  font-size: 2.5rem;
+  font-size: @fontSizeP;
+}
+
+input[type=text] {
+  width: 75%;
+  outline-right: 0;
+  border-right: 0;
+  outline-left: 2px solid @borderColor;
+  border-top: 2px solid @borderColor;
+  border-bottom: 2px solid @borderColor;
+  padding: 1%;
+  -webkit-border-top-left-radius: @inputBorderRadius;
+  -webkit-border-bottom-left-radius: @inputBorderRadius;
+  -moz-border-radius-topleft: @inputBorderRadius;
+  -moz-border-radius-bottomleft: @inputBorderRadius;
+  border-top-left-radius: @inputBorderRadius;
+  border-bottom-left-radius: @inputBorderRadius;
+  clear: left;
+}
+
+input[type=submit] {
+  width: 22%;
+  outline-right: 2px solid @borderColor;
+  outline-left: 0;
+  border-left: 0;
+  border-top: 2px solid @borderColor;
+  border-botom: 2px solid @borderColor;
+  padding: 1%;
+  background-color: @borderColor;
+  color: @buttonColor;
+  -webkit-border-top-right-radius: @inputBorderRadius;
+  -webkit-border-bottom-right-radius: @inputBorderRadius;
+  -moz-border-radius-topright: @inputBorderRadius;
+  -moz-border-radius-bottomright: @inputBorderRadius;
+  border-top-right-radius: @inputBorderRadius;
+  border-bottom-right-radius: @inputBorderRadius;
+}
+
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.checkbox {
+  width: @fontSizeP;
+  position: relative;
+  float: left;
+  margin-right: 2rem;
+}
+
+.checkbox label {
+  cursor: pointer;
+  position: absolute;
+  width: @fontSizeP;
+  height: @fontSizeP;
+  top: 0;
+  left: 0;
+  background: #eee;
+  border:1px solid #ddd;
+}
+
+.checkbox label:after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: @fontSizeP / 2.7;
+  height: @fontSizeP / 5;
+  background: transparent;
+  top: @fontSizeP / 4;
+  left: @fontSizeP /3.5;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.checkbox label:hover::after {
+  opacity: 0.5;
+}
+
+.checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
 }
 
 .clickable {
@@ -44,18 +132,57 @@ p, li, a, span, input, button {
 
 .done-true {
   text-decoration: line-through;
-  color: grey;
+  color: @doneColor;
+}
+
+.main {
+  position: relative;
 }
 
 .lists,
 .items {
-  float: left;
-  padding-right: 5%;
-  width: 45%;
+  position: absolute;
+  top: 0;
+  padding: 0 @padding 0 @padding;
+  width: @oneColPageWidth;
+}
+
+.items {
+  -webkit-transition: opacity .4s ease-in-out;
+  -moz-transition: opacity .4s ease-in-out;
+  -o-transition: opacity .4s ease-in-out;
+  transition: opacity .4s ease-in-out;
+}
+
+.items.open {
+  opacity: 1.0;
+}
+
+.items.closed {
+  opacity: 0.0;
+}
+
+.lists.open {
+  opacity: 0.0;
+}
+
+.lists.closed {
+  opacity: 1.0;
+}
+
+.lists,
+.items {
+  left: 0;
+}
+
+.lists li,
+.items li {
+  padding: 1rem 0 1rem 0;
+  line-height: @fontSizeP;
 }
 
 .remove {
-  color: @red;
+  color: @removeColor;
 }
 
 .hide {
@@ -63,5 +190,9 @@ p, li, a, span, input, button {
 }
 
 .selected {
-  background: #ddd;
+  background-color: @selected;
+}
+
+.btn-primary {
+  
 }

@@ -24,7 +24,7 @@ $ npm install
 Compile LESS file
 
 ```
-$ lessc -x styles.less styles.css
+$ lessc -x app/styles/less/main.less app/styles/css/main.css
 ```
 Run Script to autocomile LESS files
 
