@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="listsApp" ng-controller="MainCtrl">
   <head>
-    <title>{{title}}</title>
+    <title ng-bind="title"></title>
     <script src="/scripts/vendor/angular.min.js"></script>
     <script src="/scripts/vendor/angular-resource.min.js"></script>
     <script src="/scripts/directives/directives.js"></script>
@@ -16,7 +16,7 @@
       <div ng-click="reload()" class="spinner-wrapper">
         <div id="spinner" class="spinner clickable"></div>
       </div>
-      <a href="#"><h1>{{title}}</h1></a>
+      <a href="#"><h1 ng-bind="title"></h1></a>
     </header>
     <div>
       <div class="lists">
