@@ -1,0 +1,35 @@
+.lists,
+.items {
+  position: absolute;
+  top: 0;
+  padding: 0 @padding 0 @padding;
+  width: @oneColPageWidth;
+}
+
+.items {
+  -webkit-transition: opacity .4s ease-in-out;
+  -moz-transition: opacity .4s ease-in-out;
+  -o-transition: opacity .4s ease-in-out;
+  transition: opacity .4s ease-in-out;
+}
+
+.items.open {
+  opacity: 1.0;
+}
+
+.items.closed {
+  opacity: 0.0;
+}
+
+.lists.open {
+  opacity: 0.0;
+}
+
+.lists.closed {
+  opacity: 1.0;
+}
+
+.lists,
+.items {
+  left: 0;
+}

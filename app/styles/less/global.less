@@ -76,6 +76,9 @@ input[type=submit] {
   border-bottom-right-radius: @inputBorderRadius;
 }
 
+/*
+Custom checkboxes
+ */
 input[type=checkbox] {
   visibility: hidden;
 }
@@ -84,7 +87,7 @@ input[type=checkbox] {
   width: @fontSizePSmall;
   position: relative;
   float: left;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .checkbox label {
@@ -118,6 +121,9 @@ input[type=checkbox] {
   transform: rotate(-45deg);
 }
 
+/*
+
+ */
 .checkbox label:hover::after {
   opacity: 0.5;
 }
@@ -137,42 +143,6 @@ input[type=checkbox] {
 
 .main {
   position: relative;
-}
-
-.lists,
-.items {
-  position: absolute;
-  top: 0;
-  padding: 0 @padding 0 @padding;
-  width: @oneColPageWidth;
-}
-
-.items {
-  -webkit-transition: opacity .4s ease-in-out;
-  -moz-transition: opacity .4s ease-in-out;
-  -o-transition: opacity .4s ease-in-out;
-  transition: opacity .4s ease-in-out;
-}
-
-.items.open {
-  opacity: 1.0;
-}
-
-.items.closed {
-  opacity: 0.0;
-}
-
-.lists.open {
-  opacity: 0.0;
-}
-
-.lists.closed {
-  opacity: 1.0;
-}
-
-.lists,
-.items {
-  left: 0;
 }
 
 .lists li,
