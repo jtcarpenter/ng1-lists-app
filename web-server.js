@@ -1,7 +1,7 @@
 var express = require('express'),
   merger = require('./merge'),
   app = express(),
-  port = parseInt(process.env.PORT, 10) || 5000,
+  port = process.env.PORT || 5000,
   mongodb = require('mongodb'),
   ObjectId = require('mongodb').ObjectID,
   dbName = 'lists-app',
