@@ -1,7 +1,7 @@
 var express = require('express'),
   merger = require('./merge'),
   app = express(),
-  port = parseInt(process.env.PORT, 10) || 8080,
+  port = parseInt(process.env.PORT, 10) || 5000,
   mongodb = require('mongodb'),
   ObjectId = require('mongodb').ObjectID,
   dbName = 'lists-app',
@@ -32,9 +32,12 @@ app.configure(function() {
 var lists;
 var server = new mongodb.Server("127.0.0.1", 27017, {});
 new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
-  if (error) throw error;
-  console.log('connected to mongodb');
-  lists = new mongodb.Collection(client, 'lists');
+  if (error) {
+    console.log('could not connect to mongodb');
+  } else {
+    console.log('connected to mongodb');
+    lists = new mongodb.Collection(client, 'lists');
+  }
 });
 
 /*
@@ -43,39 +46,60 @@ new mongodb.Db(dbName, server, {safe:false}).open(function (error, client) {
 
 app.get('/lists', function(req, res) {
   console.log('/lists GET:');
+
+  if (typeof lists === 'undefined') {
+    console.log('lists are unavailable');
+    res.send(404, {error: 'Lists are unavailable'});
+    return false;
+  }
+
   var params = {};
+
   lists.find(params).toArray(function(err, docs) {
     if (err) {
       console.log('could not get lists');
       res.send(404, {error: 'Could not get lists'});
       return false;
     }
-    // TODO: Remove Timeout
-    setTimeout(function(){
-      res.send(200, docs);
-    }, 500);
+    // setTimeout(function(){
+    //   res.send(200, docs);
+    // }, 500);
   });
 });
 
 app.get('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id) + ' GET:';
+
+  if (typeof lists === 'undefined') {
+    console.log('lists are unavailable');
+    res.send(404, {error: 'Lists are unavailable'});
+    return false;
+  }
+
   var params = {};
   params._id = ObjectId(req.params.id);
+
   lists.findOne(params, function(err, doc) {
     if (err) {
       console.log('could not get list');
       res.send(404, {error: 'Could not get list'});
       return false
     }
-    // TODO: Remove Timeout
-    setTimeout(function(){
-      res.send(200, doc);
-    }, 500);
+    // setTimeout(function(){
+    //   res.send(200, doc);
+    // }, 500);
   });
 });
 
 app.post('/lists', function(req, res) {
   console.log('/lists/ POST: title->' + req.body.title);
+
+  if (typeof lists === 'undefined') {
+    console.log('lists are unavailable');
+    res.send(404, {error: 'Lists are unavailable'});
+    return false;
+  }
+
   var list = {};
   list.title = req.body.title || '';
   list.items = [];
@@ -88,15 +112,21 @@ app.post('/lists', function(req, res) {
       res.send(500, {error: 'Could not insert new list'});
       return false;
     }
-    // TODO: Remove Timeout
-    setTimeout(function(){
-      res.send(200, list);
-    }, 500);
+    // setTimeout(function(){
+    //   res.send(200, list);
+    // }, 500);
   });
 });
 
 app.post('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id +' POST: title->' + req.body.title + ' items->' + req.body.items);
+  
+  if (typeof lists === 'undefined') {
+    console.log('lists are unavailable');
+    res.send(404, {error: 'Lists are unavailable'});
+    return false;
+  }
+
   var params = {};
   var list = {};
   var items = req.body.items || [];
@@ -125,16 +155,22 @@ app.post('/lists/:id', function(req, res) {
         console.log(err);
         return false;
       }
-      // TODO: Remove Timeout
-      setTimeout(function(){
-        res.send(200, list);
-      }, 500);
+      // setTimeout(function(){
+      //   res.send(200, list);
+      // }, 500);
     });
   });
 });
 
 app.del('/lists/:id', function(req, res) {
   console.log('/lists/' + req.params.id + ' DEL:');
+
+  if (typeof lists === 'undefined') {
+    console.log('lists are unavailable');
+    res.send(404, {error: 'Lists are unavailable'});
+    return false;
+  }
+
   var params = {};
   params._id = ObjectId(req.params.id);
 
@@ -144,10 +180,9 @@ app.del('/lists/:id', function(req, res) {
       res.send(500, {error: 'Could not remove list'});
       return false;
     }
-    // TODO: Remove Timeout
-    setTimeout(function(){
-      res.send(200, {success: true});
-    }, 500);
+    // setTimeout(function(){
+    //   res.send(200, {success: true});
+    // }, 500);
   });
 });
 

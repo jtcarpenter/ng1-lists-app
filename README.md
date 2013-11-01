@@ -94,6 +94,12 @@ Start server
 $ node web-server.js
 ```
 
+### Foreman
+
+```
+$ forman start
+```
+
 ## Unit testing
 Initialise Karma
 
